@@ -19,7 +19,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -30,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GRID OVERLAY ─────────────────────────────── */
     body::before {
       content: '';
       position: fixed;
@@ -44,7 +42,6 @@
       z-index: 0;
     }
 
-    /* ── SCAN LINE ────────────────────────────────── */
     body::after {
       content: '';
       position: fixed;
@@ -60,7 +57,6 @@
     }
     @keyframes scan { to { top: 200%; } }
 
-    /* ── LAYOUT ───────────────────────────────────── */
     .page {
       position: relative;
       z-index: 2;
@@ -69,7 +65,6 @@
       padding: 0 24px;
     }
 
-    /* ── HEADER ───────────────────────────────────── */
     header {
       padding: 64px 0 0;
       text-align: center;
@@ -84,6 +79,30 @@
       margin-bottom: 28px;
     }
 
+    /* ── COVER ── */
+    .cover-wrap {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .cover-wrap img {
+      width: 160px;
+      border-radius: 4px;
+      box-shadow: 0 0 40px rgba(62,207,191,0.2), 0 0 8px rgba(62,207,191,0.1);
+      display: block;
+    }
+    .cover-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 18px;
+      background: radial-gradient(ellipse, rgba(62,207,191,0.25), transparent 70%);
+      filter: blur(4px);
+    }
+
     .title {
       font-family: 'Share Tech Mono', monospace;
       font-size: clamp(64px, 14vw, 128px);
@@ -94,9 +113,7 @@
       display: inline-block;
     }
 
-    /* glitch effect */
-    .title::before,
-    .title::after {
+    .title::before, .title::after {
       content: 'Z3RO';
       position: absolute;
       inset: 0;
@@ -145,7 +162,57 @@
       margin-top: 12px;
     }
 
-    /* ── DIVIDER ──────────────────────────────────── */
+    /* ── COUNTDOWN ── */
+    .countdown-wrap {
+      margin: 48px auto 0;
+      max-width: 480px;
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .cblock { display: flex; flex-direction: column; align-items: center; }
+    .cnum {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(32px, 7vw, 52px);
+      color: #ffffff;
+      line-height: 1;
+    }
+    .clabel {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .csep {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 36px;
+      color: var(--cyan-dim);
+      margin-top: 6px;
+    }
+    .launch-date-line {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      margin-top: 18px;
+    }
+
     .divider {
       width: 100%;
       height: 1px;
@@ -153,7 +220,6 @@
       margin: 48px 0;
     }
 
-    /* ── LOGLINE ──────────────────────────────────── */
     .logline {
       text-align: center;
       font-size: clamp(20px, 3.5vw, 26px);
@@ -164,14 +230,12 @@
       max-width: 620px;
       margin: 0 auto;
     }
-
     .logline strong {
       color: var(--cyan);
       font-style: normal;
       font-weight: 400;
     }
 
-    /* ── BOOKS GRID ───────────────────────────────── */
     .books {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -185,6 +249,8 @@
       padding: 24px;
       position: relative;
       transition: border-color 0.3s;
+      text-decoration: none;
+      display: block;
     }
     .book:hover { border-color: var(--cyan-dim); }
 
@@ -195,26 +261,22 @@
       color: var(--muted);
       margin-bottom: 8px;
     }
-
     .book-title {
       font-family: 'Share Tech Mono', monospace;
       font-size: 18px;
       color: var(--cyan);
       margin-bottom: 12px;
     }
-
     .book-desc {
       font-size: 15px;
       line-height: 1.55;
       color: var(--muted);
     }
 
-    /* ── LAUNCH ───────────────────────────────────── */
     .launch {
       text-align: center;
       padding: 48px 0;
     }
-
     .launch-label {
       font-family: 'Share Tech Mono', monospace;
       font-size: 11px;
@@ -223,14 +285,12 @@
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-
     .launch-date {
       font-family: 'Share Tech Mono', monospace;
       font-size: clamp(36px, 8vw, 72px);
       color: var(--cyan);
       letter-spacing: 0.06em;
     }
-
     .launch-time {
       font-family: 'Share Tech Mono', monospace;
       font-size: 14px;
@@ -239,7 +299,6 @@
       letter-spacing: 0.12em;
     }
 
-    /* ── COMPARABLES ──────────────────────────────── */
     .comparables {
       font-family: 'Share Tech Mono', monospace;
       font-size: 11px;
@@ -250,7 +309,6 @@
     }
     .comparables span { color: var(--cyan-dim); }
 
-    /* ── CTA BUTTONS ──────────────────────────────── */
     .ctas {
       display: flex;
       flex-wrap: wrap;
@@ -270,27 +328,19 @@
       transition: background 0.25s, color 0.25s;
       cursor: pointer;
     }
-
     .btn-primary {
       background: var(--cyan);
       color: var(--bg);
       border-color: var(--cyan);
     }
-    .btn-primary:hover {
-      background: transparent;
-      color: var(--cyan);
-    }
-
+    .btn-primary:hover { background: transparent; color: var(--cyan); }
     .btn-secondary {
       background: transparent;
       color: var(--cyan);
       border-color: var(--cyan-dim);
     }
-    .btn-secondary:hover {
-      background: var(--panel);
-    }
+    .btn-secondary:hover { background: var(--panel); }
 
-    /* ── FOOTER ───────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
       padding: 24px 0;
@@ -301,11 +351,11 @@
       color: var(--muted);
     }
 
-    /* ── RESPONSIVE ───────────────────────────────── */
     @media (max-width: 480px) {
       header { padding-top: 40px; }
       .ctas { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 280px; text-align: center; }
+      .countdown { gap: 0.75rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -318,9 +368,28 @@
 
     <header>
       <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
+
+      <div class="cover-wrap">
+        <img src="cover.png" alt="Z3RO La Trilogía — John Castle" />
+      </div>
+
       <div class="title">Z3RO</div>
-      <div class="subtitle">-The Trilogy-</div>
+      <div class="subtitle">-La Trilogía-</div>
       <div class="author-line">JOHN CASTLE · EDICIONES CASTLE · 2026</div>
+
+      <div class="countdown-wrap">
+        <div class="countdown-label">>> LANZAMIENTO EN</div>
+        <div class="countdown">
+          <div class="cblock"><span class="cnum" id="days">--</span><span class="clabel">días</span></div>
+          <span class="csep">:</span>
+          <div class="cblock"><span class="cnum" id="hours">--</span><span class="clabel">horas</span></div>
+          <span class="csep">:</span>
+          <div class="cblock"><span class="cnum" id="mins">--</span><span class="clabel">min</span></div>
+          <span class="csep">:</span>
+          <div class="cblock"><span class="cnum" id="secs">--</span><span class="clabel">seg</span></div>
+        </div>
+        <div class="launch-date-line">10 · 10 · 2026 — 10:10 AM · TODOS LOS FORMATOS</div>
+      </div>
     </header>
 
     <div class="divider"></div>
@@ -333,17 +402,17 @@
     <div class="divider"></div>
 
     <div class="books">
-      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener" style="text-decoration:none;">
+      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
         <div class="book-num">LIBRO I</div>
         <div class="book-title">C.O.R.E.</div>
         <div class="book-desc">Un ingeniero audita una app de citas con IA. Descubre que lleva 847 días recopilando sus datos sin su conocimiento.</div>
       </a>
-      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener" style="text-decoration:none;">
+      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
         <div class="book-num">LIBRO II</div>
         <div class="book-title">10:10</div>
         <div class="book-desc">Un glitch de 2 segundos en una ciudad perfectamente vigilada. El sistema niega que ocurrió.</div>
       </a>
-      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener" style="text-decoration:none;">
+      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
         <div class="book-num">LIBRO III</div>
         <div class="book-title">LUMINA ETHER</div>
         <div class="book-desc">Una entidad digital rastrea algo que devora la red. Al otro lado, una científica rastreando lo mismo.</div>
@@ -351,12 +420,6 @@
     </div>
 
     <div class="divider"></div>
-
-    <div class="launch">
-      <div class="launch-label">>> LANZAMIENTO</div>
-      <div class="launch-date">10.10.2026</div>
-      <div class="launch-time">10:10 AM · TODOS LOS FORMATOS</div>
-    </div>
 
     <div class="comparables">
       PARA LECTORES DE <span>BLACK MIRROR</span> · <span>TED CHIANG</span> · <span>KAZUO ISHIGURO</span>
@@ -366,7 +429,7 @@
       <a class="btn btn-primary" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
         COMPRAR EBOOK → AMAZON
       </a>
-      <a class="btn btn-secondary" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank" rel="noopener" id="ost-link">
+      <a class="btn btn-secondary" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank" rel="noopener">
         ESCUCHAR OST → SPOTIFY
       </a>
       <a class="btn btn-secondary" href="https://www.instagram.com/dystopian_voyager_official" target="_blank" rel="noopener">
@@ -379,5 +442,29 @@
     </footer>
 
   </div>
+
+  <script>
+    function tick() {
+      var launch = new Date('2026-10-10T10:10:00-03:00');
+      var diff = launch - new Date();
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('mins').textContent = '00';
+        document.getElementById('secs').textContent = '00';
+        return;
+      }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('days').textContent = d;
+      document.getElementById('hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('secs').textContent = String(s).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
 </body>
 </html>
