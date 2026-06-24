@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Z3RO — La Trilogía. John Castle. Tres historias. Un sistema. Una pregunta." />
+  <title>Z3RO — John Castle</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+
+    :root {
+      --bg:      #080D0B;
+      --panel:   #0E1712;
+      --cyan:    #3ECFBF;
+      --cyan-dim:#1E6860;
+      --text:    #C8D8D0;
+      --muted:   #4A6058;
+      --border:  #1A2E24;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0.15;
+      animation: scan 8s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes scan { to { top: 200%; } }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 64px 0 0;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    /* ── COVER ── */
+    .cover-wrap {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .cover-wrap img {
+      width: 160px;
+      border-radius: 4px;
+      box-shadow: 0 0 40px rgba(62,207,191,0.2), 0 0 8px rgba(62,207,191,0.1);
+      display: block;
+    }
+    .cover-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 18px;
+      background: radial-gradient(ellipse, rgba(62,207,191,0.25), transparent 70%);
+      filter: blur(4px);
+    }
+
+    .title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(64px, 14vw, 128px);
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      position: relative;
+      display: inline-block;
+    }
+
+    .title::before, .title::after {
+      content: 'Z3RO';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+    .title::before {
+      color: #ff3366;
+      animation: glitch-a 6s infinite;
+      clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    }
+    .title::after {
+      color: #33ffee;
+      animation: glitch-b 6s infinite;
+      clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    }
+    @keyframes glitch-a {
+      0%,90%,100% { opacity:0; transform:none; }
+      92% { opacity:.6; transform: translateX(-3px); }
+      94% { opacity:0; }
+      96% { opacity:.4; transform: translateX(3px); }
+      98% { opacity:0; }
+    }
+    @keyframes glitch-b {
+      0%,88%,100% { opacity:0; transform:none; }
+      90% { opacity:.5; transform: translateX(3px); }
+      92% { opacity:0; }
+      95% { opacity:.3; transform: translateX(-2px); }
+      97% { opacity:0; }
+    }
+
+    .subtitle {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: clamp(18px, 3vw, 22px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text);
+      margin-top: 16px;
+      opacity: 0.75;
+    }
+
+    .author-line {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--cyan-dim);
+      margin-top: 12px;
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown-wrap {
+      margin: 48px auto 0;
+      max-width: 480px;
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .cblock { display: flex; flex-direction: column; align-items: center; }
+    .cnum {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(32px, 7vw, 52px);
+      color: #ffffff;
+      line-height: 1;
+    }
+    .clabel {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .csep {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 36px;
+      color: var(--cyan-dim);
+      margin-top: 6px;
+    }
+    .launch-date-line {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      margin-top: 18px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan-dim), transparent);
+      margin: 48px 0;
+    }
+
+    .logline {
+      text-align: center;
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .logline strong {
+      color: var(--cyan);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .books {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 48px 0;
+    }
+
+    .book {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+      position: relative;
+      transition: border-color 0.3s;
+      text-decoration: none;
+      display: block;
+    }
+    .book:hover { border-color: var(--cyan-dim); }
+
+    .book-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .book-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .book-desc {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .launch {
+      text-align: center;
+      padding: 48px 0;
+    }
+    .launch-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .launch-date {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(36px, 8vw, 72px);
+      color: var(--cyan);
+      letter-spacing: 0.06em;
+    }
+    .launch-time {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: var(--cyan-dim);
+      margin-top: 8px;
+      letter-spacing: 0.12em;
+    }
+
+    .comparables {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.1em;
+      margin-bottom: 48px;
+    }
+    .comparables span { color: var(--cyan-dim); }
+
+    .ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      padding-bottom: 80px;
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border: 1px solid;
+      transition: background 0.25s, color 0.25s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--bg);
+      border-color: var(--cyan);
+    }
+    .btn-primary:hover { background: transparent; color: var(--cyan); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--cyan);
+      border-color: var(--cyan-dim);
+    }
+    .btn-secondary:hover { background: var(--panel); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      header { padding-top: 40px; }
+      .ctas { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; text-align: center; }
+      .countdown { gap: 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::after, .title::before, .title::after { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
+
+      <div class="cover-wrap">
+        <img src="cover.png" alt="Z3RO La Trilogía — John Castle" />
+      </div>
+
+      <div class="title">Z3RO</div>
+      <div class="subtitle">-La Trilogía-</div>
+      <div class="author-line">JOHN CASTLE · EDICIONES CASTLE · 2026</div>
+
+      <div class="countdown-wrap">
+        <div class="countdown-label">>> LANZAMIENTO EN</div>
+        <div class="countdown">
+          <div class="cblock"><span class="cnum" id="days">--</span><span class="clabel">días</span></div>
+          <span class="csep">:</span>
+          <div class="cblock"><span class="cnum" id="hours">--</span><span class="clabel">horas</span></div>
+          <span class="csep">:</span>
+          <div class="cblock"><span class="cnum" id="mins">--</span><span class="clabel">min</span></div>
+          <span class="csep">:</span>
+          <div class="cblock"><span class="cnum" id="secs">--</span><span class="clabel">seg</span></div>
+        </div>
+        <div class="launch-date-line">10 · 10 · 2026 — 10:10 AM · TODOS LOS FORMATOS</div>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <p class="logline">
+      Tres historias. Un mismo sistema. Una pregunta:<br>
+      <strong>¿qué sobrevive cuando una corporación intenta poseer una conciencia?</strong>
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="books">
+      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
+        <div class="book-num">LIBRO I</div>
+        <div class="book-title">C.O.R.E.</div>
+        <div class="book-desc">Un ingeniero audita una app de citas con IA. Descubre que lleva 847 días recopilando sus datos sin su conocimiento.</div>
+      </a>
+      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
+        <div class="book-num">LIBRO II</div>
+        <div class="book-title">10:10</div>
+        <div class="book-desc">Un glitch de 2 segundos en una ciudad perfectamente vigilada. El sistema niega que ocurrió.</div>
+      </a>
+      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
+        <div class="book-num">LIBRO III</div>
+        <div class="book-title">LUMINA ETHER</div>
+        <div class="book-desc">Una entidad digital rastrea algo que devora la red. Al otro lado, una científica rastreando lo mismo.</div>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="comparables">
+      PARA LECTORES DE <span>BLACK MIRROR</span> · <span>TED CHIANG</span> · <span>KAZUO ISHIGURO</span>
+    </div>
+
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
+        COMPRAR EBOOK → AMAZON
+      </a>
+      <a class="btn btn-secondary" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank" rel="noopener">
+        ESCUCHAR OST → SPOTIFY
+      </a>
+      <a class="btn btn-secondary" href="https://www.instagram.com/dystopian_voyager_official" target="_blank" rel="noopener">
+        DYSTOPIAN VOYAGER
+      </a>
+    </div>
+
+    <footer>
+      COPYRIGHT © 2026 JOHN CASTLE · EDICIONES CASTLE · TODOS LOS DERECHOS RESERVADOS
+    </footer>
+
+  </div>
+
+  <script>
+    function tick() {
+      var launch = new Date('2026-10-10T10:10:00-03:00');
+      var diff = launch - new Date();
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('mins').textContent = '00';
+        document.getElementById('secs').textContent = '00';
+        return;
+      }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('days').textContent = d;
+      document.getElementById('hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('secs').textContent = String(s).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
