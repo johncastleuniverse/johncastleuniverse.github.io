@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Press Kit — John Castle · Z3RO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+
+    :root {
+      --bg:      #080D0B;
+      --panel:   #0E1712;
+      --cyan:    #3ECFBF;
+      --cyan-dim:#1E6860;
+      --text:    #C8D8D0;
+      --muted:   #4A6058;
+      --border:  #1A2E24;
+      --white:   #F0F4F2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 56px 0 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 48px;
+      margin-bottom: 56px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .header-left { flex: 1; min-width: 260px; }
+
+    .pk-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .pk-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(42px, 10vw, 80px);
+      color: var(--white);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .pk-subtitle {
+      font-family: 'Crimson Pro', serif;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .pk-author {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: var(--cyan-dim);
+      margin-top: 10px;
+    }
+
+    .header-right { flex-shrink: 0; }
+
+    .cover-img {
+      width: 140px;
+      border-radius: 4px;
+      box-shadow: 0 0 32px rgba(62,207,191,0.2);
+      display: block;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan-dim), transparent);
+    }
+
+    /* ── AUTHOR ── */
+    .author-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .author-photo {
+      width: 100%;
+      border-radius: 4px;
+      filter: grayscale(20%);
+      box-shadow: 0 0 24px rgba(62,207,191,0.1);
+    }
+
+    .bio {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .bio p + p { margin-top: 1em; }
+
+    /* ── BOOKS ── */
+    .books {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .book {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 20px;
+      transition: border-color 0.3s;
+    }
+    .book:hover { border-color: var(--cyan-dim); }
+
+    .book-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .book-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 16px;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .book-desc {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    /* ── FICHA TÉCNICA ── */
+    .ficha {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .ficha-item {
+      background: var(--panel);
+      padding: 16px 20px;
+    }
+
+    .ficha-key {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .ficha-val {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--white);
+    }
+
+    /* ── MÚSICA ── */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .music-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 16px;
+    }
+
+    .music-project {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--cyan);
+      margin-bottom: 6px;
+    }
+
+    .music-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── LINKS ── */
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .link-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 20px;
+      border: 1px solid var(--cyan-dim);
+      color: var(--cyan);
+      transition: background 0.2s;
+    }
+    .link-btn:hover { background: var(--panel); }
+    .link-btn.primary {
+      background: var(--cyan);
+      color: var(--bg);
+      border-color: var(--cyan);
+    }
+    .link-btn.primary:hover { background: transparent; color: var(--cyan); }
+
+    /* ── CONTACTO ── */
+    .contacto {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+
+    .contacto p {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .contacto a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 56px;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    @media (max-width: 560px) {
+      .author-grid { grid-template-columns: 1fr; }
+      .author-photo { width: 120px; }
+      .header-top { flex-direction: column-reverse; }
+      .cover-img { width: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="header-top">
+        <div class="header-left">
+          <div class="pk-label">>> PRESS KIT · 2026</div>
+          <div class="pk-title">Z3RO</div>
+          <div class="pk-subtitle">-La Trilogía-</div>
+          <div class="pk-author">JOHN CASTLE · EDICIONES CASTLE</div>
+        </div>
+        <div class="header-right">
+          <img class="cover-img" src="trilogy.png.png" alt="Z3RO La Trilogía — John Castle" />
+        </div>
+      </div>
+    </header>
+
+    <!-- BIO -->
+    <div class="section">
+      <div class="section-label">>> AUTOR</div>
+      <div class="author-grid">
+        <img class="author-photo" src="author.jpg" alt="John Castle" />
+        <div class="bio">
+          <p>John Castle es un autor y compositor chileno que construye universos desde la intersección entre la narrativa especulativa y la música. Su obra no distingue entre formatos: un libro, un disco y un mapa son partes del mismo territorio.</p>
+          <p>Su trilogía Z3RO — publicada bajo su editorial independiente Ediciones Castle — explora qué ocurre cuando una corporación intenta poseer una conciencia. Tres historias independientes que convergen en un mismo sistema, escritas para lectores de Black Mirror, Ted Chiang y Kazuo Ishiguro.</p>
+          <p>Como compositor solista, desarrolla múltiples proyectos en paralelo — desde música cinematográfica sci-fi hasta synthwave, ambient y piano minimalista. Dystopian Voyager, su proyecto de ciencia ficción sonora, es el autor del OST oficial de Z3RO, que se lanza tres días antes que los libros.</p>
+          <p>Trabaja desde Santiago, Chile.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIBROS -->
+    <div class="section">
+      <div class="section-label">>> LA TRILOGÍA</div>
+      <div class="books">
+        <div class="book">
+          <div class="book-num">LIBRO I</div>
+          <div class="book-title">C.O.R.E.</div>
+          <div class="book-desc">Un ingeniero audita una app de citas con IA. Descubre que lleva 847 días recopilando sus datos sin su conocimiento.</div>
+        </div>
+        <div class="book">
+          <div class="book-num">LIBRO II</div>
+          <div class="book-title">10:10</div>
+          <div class="book-desc">Un glitch de 2 segundos en una ciudad perfectamente vigilada. El sistema niega que ocurrió.</div>
+        </div>
+        <div class="book">
+          <div class="book-num">LIBRO III</div>
+          <div class="book-title">LUMINA ETHER</div>
+          <div class="book-desc">Una entidad digital rastrea algo que devora la red. Al otro lado, una científica rastreando lo mismo.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FICHA TÉCNICA -->
+    <div class="section">
+      <div class="section-label">>> FICHA TÉCNICA</div>
+      <div class="ficha">
+        <div class="ficha-item">
+          <div class="ficha-key">Fecha de lanzamiento</div>
+          <div class="ficha-val">10.10.2026 — 10:10 AM</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">Formatos</div>
+          <div class="ficha-val">Físico · Ebook · POD</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">ISBN (físico)</div>
+          <div class="ficha-val">978-956-03-0107-9</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">ASIN (ebook)</div>
+          <div class="ficha-val">B0H3WQXBMF</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">Precio ebook</div>
+          <div class="ficha-val">USD 3.99</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">Editorial</div>
+          <div class="ficha-val">Ediciones Castle</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">OST</div>
+          <div class="ficha-val">Dystopian Voyager · AM10714</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-key">País</div>
+          <div class="ficha-val">Chile</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÚSICA -->
+    <div class="section">
+      <div class="section-label">>> PROYECTOS MUSICALES</div>
+      <div class="music-grid">
+        <div class="music-item">
+          <div class="music-project">DYSTOPIAN VOYAGER</div>
+          <div class="music-desc">Música cinematográfica sci-fi. OST oficial de Z3RO.</div>
+        </div>
+        <div class="music-item">
+          <div class="music-project">IN THE HAZE</div>
+          <div class="music-desc">Synthwave. Fuerte presencia en plataformas de streaming.</div>
+        </div>
+        <div class="music-item">
+          <div class="music-project">NOBODY AND ALL</div>
+          <div class="music-desc">Dark ambient / liminal.</div>
+        </div>
+        <div class="music-item">
+          <div class="music-project">MR. CLUMSY FINGERS</div>
+          <div class="music-desc">Lofi.</div>
+        </div>
+        <div class="music-item">
+          <div class="music-project">JOHN CASTLE MUSIC</div>
+          <div class="music-desc">Piano minimalista.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="section">
+      <div class="section-label">>> LINKS</div>
+      <div class="links">
+        <a class="link-btn primary" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank">Ebook → Amazon</a>
+        <a class="link-btn" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank">OST → Spotify</a>
+        <a class="link-btn" href="https://johncastleuniverse.github.io" target="_blank">Sitio oficial</a>
+        <a class="link-btn" href="https://www.instagram.com/dystopian_voyager_official" target="_blank">Instagram</a>
+      </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="section">
+      <div class="section-label">>> CONTACTO</div>
+      <div class="contacto">
+        <p>
+          AUTOR · JOHN CASTLE<br>
+          EDITORIAL · EDICIONES CASTLE<br>
+          PAÍS · CHILE · SANTIAGO<br>
+          WEB · <a href="https://johncastleuniverse.github.io">johncastleuniverse.github.io</a>
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      COPYRIGHT © 2026 JOHN CASTLE · EDICIONES CASTLE · TODOS LOS DERECHOS RESERVADOS
+    </footer>
+
+  </div>
+</body>
+</html>
