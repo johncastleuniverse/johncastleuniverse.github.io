@@ -379,6 +379,34 @@
     @media (prefers-reduced-motion: reduce) {
       body::after, .title::before, .title::after { animation: none; }
     }
+
+    /* ── AUDIO PLAYER ── */
+    .audio-section {
+      text-align: center;
+      margin: 0 auto 0;
+      max-width: 480px;
+    }
+    .audio-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .audio-player {
+      width: 100%;
+      height: 36px;
+      filter: invert(1) sepia(1) saturate(2) hue-rotate(130deg) brightness(0.7);
+      border-radius: 0;
+    }
+    .audio-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -391,7 +419,7 @@
       <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
 
       <div class="cover-wrap">
-        <img src="trilogy.png.png" alt="Z3RO La Trilogía — John Castle" />
+        <img src="-The_Trilogy-.png" alt="Z3RO La Trilogía — John Castle" />
       </div>
 
       <div class="title">Z3RO</div>
@@ -438,6 +466,18 @@
         <div class="book-title">LUMINA ETHER</div>
         <div class="book-desc">Una entidad digital rastrea algo que devora la red. Al otro lado, una científica rastreando lo mismo.</div>
       </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="divider"></div>
+
+    <div class="audio-section">
+      <div class="audio-label">>> OST PREVIEW — DYSTOPIAN VOYAGER</div>
+      <audio class="audio-player" controls>
+        <source src="z3ro.mp3" type="audio/mpeg">
+      </audio>
+      <div class="audio-note">Z3RO (ORIGINAL SCORE) · DISPONIBLE 07.10.2026</div>
     </div>
 
     <div class="divider"></div>
