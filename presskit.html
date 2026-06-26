@@ -323,6 +323,33 @@
       .header-top { flex-direction: column-reverse; }
       .cover-img { width: 100px; }
     }
+
+    /* ── AUDIO PLAYER ── */
+    .audio-wrap {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+    .audio-wrap .audio-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .audio-wrap audio {
+      width: 100%;
+      height: 36px;
+      filter: invert(1) sepia(1) saturate(2) hue-rotate(130deg) brightness(0.7);
+    }
+    .audio-wrap .audio-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -349,7 +376,7 @@
     <div class="section">
       <div class="section-label">>> AUTOR</div>
       <div class="author-grid">
-        <img class="author-photo" src="giridyi.png" alt="John Castle" />
+        <img class="author-photo" src="author.jpg" alt="John Castle" />
         <div class="bio">
           <p>John Castle es un autor y compositor chileno que construye universos desde la intersección entre la narrativa especulativa y la música. Su obra no distingue entre formatos: un libro, un disco y un mapa son partes del mismo territorio.</p>
           <p>Su trilogía Z3RO — publicada bajo su editorial independiente Ediciones Castle — explora qué ocurre cuando una corporación intenta poseer una conciencia. Tres historias independientes que convergen en un mismo sistema, escritas para lectores de Black Mirror, Ted Chiang y Kazuo Ishiguro.</p>
@@ -440,6 +467,18 @@
           <div class="music-project">JOHN CASTLE MUSIC</div>
           <div class="music-desc">Piano minimalista.</div>
         </div>
+      </div>
+    </div>
+
+    <!-- AUDIO -->
+    <div class="section">
+      <div class="section-label">>> OST PREVIEW</div>
+      <div class="audio-wrap">
+        <div class="audio-label">Z3RO (ORIGINAL SCORE) · DYSTOPIAN VOYAGER</div>
+        <audio controls>
+          <source src="z3ro.mp3" type="audio/mpeg">
+        </audio>
+        <div class="audio-note">OST COMPLETO DISPONIBLE 07.10.2026 EN TODAS LAS PLATAFORMAS</div>
       </div>
     </div>
 
