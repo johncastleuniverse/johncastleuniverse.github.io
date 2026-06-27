@@ -350,6 +350,51 @@
       letter-spacing: 0.12em;
       margin-top: 8px;
     }
+
+    /* ── OST ── */
+    .ost-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+    .ost-cover {
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: 0 0 24px rgba(62,207,191,0.15);
+    }
+    .ost-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 16px;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .ost-artist {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      margin-bottom: 16px;
+    }
+    .ost-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .ost-date {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--cyan-dim);
+      letter-spacing: 0.14em;
+      margin-top: 14px;
+    }
+    @media (max-width: 560px) {
+      .ost-grid { grid-template-columns: 1fr; }
+      .ost-cover { width: 120px; }
+    }
   </style>
 </head>
 <body>
@@ -376,7 +421,7 @@
     <div class="section">
       <div class="section-label">>> AUTOR</div>
       <div class="author-grid">
-        <img class="author-photo" src="giridyi.png" alt="John Castle" />
+        <img class="author-photo" src="author.jpg" alt="John Castle" />
         <div class="bio">
           <p>John Castle es un autor y compositor chileno que construye universos desde la intersección entre la narrativa especulativa y la música. Su obra no distingue entre formatos: un libro, un disco y un mapa son partes del mismo territorio.</p>
           <p>Su trilogía Z3RO — publicada bajo su editorial independiente Ediciones Castle — explora qué ocurre cuando una corporación intenta poseer una conciencia. Tres historias independientes que convergen en un mismo sistema, escritas para lectores de Black Mirror, Ted Chiang y Kazuo Ishiguro.</p>
@@ -466,6 +511,20 @@
         <div class="music-item">
           <div class="music-project">JOHN CASTLE MUSIC</div>
           <div class="music-desc">Piano minimalista.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OST -->
+    <div class="section">
+      <div class="section-label">>> BANDA SONORA OFICIAL</div>
+      <div class="ost-grid">
+        <img class="ost-cover" src="Z3RO_OST_PORTADA.jpg" alt="Z3RO Original Soundtrack — Dystopian Voyager" />
+        <div>
+          <div class="ost-title">Z3RO: THE ORIGINAL SCORE (EDICIÓN EXPANDIDA)</div>
+          <div class="ost-artist">DYSTOPIAN VOYAGER · JOHN CASTLE MUSIC</div>
+          <div class="ost-desc">Banda sonora oficial de la Trilogía Z3RO. Un capítulo, una frecuencia. Escucha la historia mientras la lees. Compuesto y producido por John Castle Music. [ ARCHIVO EXTRAÍDO // Pistas 01-15: Código Optimizado // Pista 16: Z3RO ]</div>
+          <div class="ost-date">DISPONIBLE EN TODAS LAS PLATAFORMAS · 07.10.2026 · CATÁLOGO AM10714</div>
         </div>
       </div>
     </div>
