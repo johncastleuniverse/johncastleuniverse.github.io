@@ -439,11 +439,38 @@
       z-index: 0;
       pointer-events: none;
     }
+
+    /* ── AMBIENT SOUND BUTTON ── */
+    .sound-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: rgba(14,23,18,0.85);
+      border: 1px solid var(--cyan-dim);
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      padding: 10px 16px;
+      cursor: pointer !important;
+      backdrop-filter: blur(4px);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .sound-btn:hover {
+      border-color: var(--cyan);
+      color: var(--white);
+    }
   </style>
 </head>
 <body>
   <canvas id="particles"></canvas>
   <div class="cursor" id="cursor"></div>
+  <audio id="ambient" loop>
+    <source src="backsound.mp3" type="audio/mpeg">
+  </audio>
+  <button class="sound-btn" id="soundBtn" onclick="toggleSound()">▶ AMBIENTE</button>
+
   <div class="page">
 
     <header>
@@ -668,6 +695,24 @@
         if(iter>=finalText.length) clearInterval(interval);
         iter+=0.3;
       },40);
+    }
+  </script>
+
+  <script>
+    var playing = false;
+    var amb = document.getElementById('ambient');
+    amb.volume = 0.25;
+    function toggleSound() {
+      var btn = document.getElementById('soundBtn');
+      if (playing) {
+        amb.pause();
+        btn.textContent = '▶ AMBIENTE';
+        playing = false;
+      } else {
+        amb.play();
+        btn.textContent = '⏸ AMBIENTE';
+        playing = true;
+      }
     }
   </script>
 </body>
