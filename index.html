@@ -68,24 +68,6 @@
     header {
       padding: 64px 0 0;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.12;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    header > *:not(.header-video) {
-      position: relative;
-      z-index: 1;
     }
 
     .eyebrow {
@@ -407,19 +389,54 @@
       letter-spacing: 0.12em;
       margin-top: 8px;
     }
+
+    /* ── CUSTOM CURSOR ── */
+    * { cursor: none !important; }
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #3ECFBF;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+      box-shadow: 0 0 8px #3ECFBF, 0 0 16px #3ECFBF;
+    }
+    .cursor-trail {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #3ECFBF;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      box-shadow: 0 0 4px #3ECFBF;
+    }
+
+    /* ── PARTICLES CANVAS ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
+  <canvas id="particles"></canvas>
+  <div class="cursor" id="cursor"></div>
   <div class="page">
 
     <header>
-      <video class="header-video" autoplay muted loop playsinline>
-        <source src="video-1778175989378.mp4" type="video/mp4">
-      </video>
       <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
 
       <div class="cover-wrap">
-        <img src="trilogy.png.png" alt="Z3RO La Trilogía — John Castle" />
+        <img src="-The_Trilogy-.png" alt="Z3RO La Trilogía — John Castle" />
       </div>
 
       <div class="title">Z3RO</div>
@@ -526,6 +543,111 @@
     }
     tick();
     setInterval(tick, 1000);
+  </script>
+
+  <script>
+    // ── PARTICLES ──
+    var canvas = document.getElementById('particles');
+    var ctx = canvas.getContext('2d');
+    var W, H, dots = [];
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (var i = 0; i < 60; i++) {
+      dots.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 1.5 + 0.5
+      });
+    }
+
+    var mouse = { x: -999, y: -999 };
+    window.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        d.x += d.vx; d.y += d.vy;
+        if (d.x < 0 || d.x > W) d.vx *= -1;
+        if (d.y < 0 || d.y > H) d.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(62,207,191,0.5)';
+        ctx.fill();
+        for (var j = i + 1; j < dots.length; j++) {
+          var d2 = dots[j];
+          var dx = d.x - d2.x, dy = d.y - d2.y;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(d.x, d.y);
+            ctx.lineTo(d2.x, d2.y);
+            ctx.strokeStyle = 'rgba(62,207,191,' + (1 - dist/120) * 0.15 + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+        // Connect to mouse
+        var mdx = d.x - mouse.x, mdy = d.y - mouse.y;
+        var mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+        if (mdist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(d.x, d.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = 'rgba(62,207,191,' + (1 - mdist/150) * 0.3 + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // ── CUSTOM CURSOR ──
+    var cursor = document.getElementById('cursor');
+    var trails = [];
+    for (var t = 0; t < 6; t++) {
+      var tr = document.createElement('div');
+      tr.className = 'cursor-trail';
+      document.body.appendChild(tr);
+      trails.push({ el: tr, x: 0, y: 0 });
+    }
+
+    var cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) {
+      cx = e.clientX; cy = e.clientY;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      trails.forEach(function(tr, i) {
+        setTimeout(function() {
+          tr.el.style.left = cx + 'px';
+          tr.el.style.top = cy + 'px';
+          tr.el.style.opacity = (1 - i/6) * 0.4;
+        }, i * 40);
+      });
+    });
+
+    // ── GLITCH HACK TITLE ──
+    var titleEl = document.querySelector('.title');
+    var finalText = 'Z3RO';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+    var iter = 0;
+    var interval = setInterval(function() {
+      titleEl.innerText = finalText.split('').map(function(c, idx) {
+        if (idx < iter) return finalText[idx];
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join('');
+      if (iter >= finalText.length) clearInterval(interval);
+      iter += 0.3;
+    }, 40);
   </script>
 </body>
 </html>
