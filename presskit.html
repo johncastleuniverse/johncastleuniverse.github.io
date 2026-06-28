@@ -57,14 +57,13 @@
       margin-bottom: 56px;
       overflow: hidden;
     }
-min-height: 300px;
+
     .header-video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
       opacity: 0.18;
       z-index: 0;
       pointer-events: none;
@@ -396,9 +395,44 @@ min-height: 300px;
       .ost-grid { grid-template-columns: 1fr; }
       .ost-cover { width: 120px; }
     }
+
+    /* ── CUSTOM CURSOR ── */
+    * { cursor: none !important; }
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #3ECFBF;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px #3ECFBF, 0 0 16px #3ECFBF;
+    }
+    .cursor-trail {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #3ECFBF;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      box-shadow: 0 0 4px #3ECFBF;
+    }
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
+  <canvas id="particles"></canvas>
+  <div class="cursor" id="cursor"></div>
   <div class="page">
 
     <header>
@@ -520,7 +554,7 @@ min-height: 300px;
     <div class="section">
       <div class="section-label">>> BANDA SONORA OFICIAL</div>
       <div class="ost-grid">
-        <img class="ost-cover" src="Z3RO OST PORTADA.jpg" alt="Z3RO Original Soundtrack — Dystopian Voyager" />
+        <img class="ost-cover" src="Z3RO_OST_PORTADA.jpg" alt="Z3RO Original Soundtrack — Dystopian Voyager" />
         <div>
           <div class="ost-title">Z3RO: THE ORIGINAL SCORE (EDICIÓN EXPANDIDA)</div>
           <div class="ost-artist">DYSTOPIAN VOYAGER · JOHN CASTLE MUSIC</div>
@@ -571,5 +605,64 @@ min-height: 300px;
     </footer>
 
   </div>
+
+  <script>
+    var canvas = document.getElementById('particles');
+    var ctx = canvas.getContext('2d');
+    var W, H, dots = [];
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    for (var i = 0; i < 60; i++) {
+      dots.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4, r:Math.random()*1.5+.5 });
+    }
+    var mouse = { x: -999, y: -999 };
+    window.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+    function drawParticles() {
+      ctx.clearRect(0,0,W,H);
+      for (var i=0;i<dots.length;i++) {
+        var d=dots[i];
+        d.x+=d.vx; d.y+=d.vy;
+        if(d.x<0||d.x>W) d.vx*=-1;
+        if(d.y<0||d.y>H) d.vy*=-1;
+        ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(62,207,191,0.5)'; ctx.fill();
+        for(var j=i+1;j<dots.length;j++){
+          var d2=dots[j], dx=d.x-d2.x, dy=d.y-d2.y, dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<120){ ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(d2.x,d2.y); ctx.strokeStyle='rgba(62,207,191,'+(1-dist/120)*.15+')'; ctx.lineWidth=.5; ctx.stroke(); }
+        }
+        var mdx=d.x-mouse.x,mdy=d.y-mouse.y,mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+        if(mdist<150){ ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(mouse.x,mouse.y); ctx.strokeStyle='rgba(62,207,191,'+(1-mdist/150)*.3+')'; ctx.lineWidth=.5; ctx.stroke(); }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    var cursor = document.getElementById('cursor');
+    var trails = [];
+    for(var t=0;t<6;t++){
+      var tr=document.createElement('div'); tr.className='cursor-trail'; document.body.appendChild(tr);
+      trails.push({el:tr});
+    }
+    var cx=0,cy=0;
+    document.addEventListener('mousemove',function(e){
+      cx=e.clientX; cy=e.clientY;
+      cursor.style.left=cx+'px'; cursor.style.top=cy+'px';
+      trails.forEach(function(tr,i){ setTimeout(function(){ tr.el.style.left=cx+'px'; tr.el.style.top=cy+'px'; tr.el.style.opacity=(1-i/6)*.4; },i*40); });
+    });
+
+    // Glitch on pk-title
+    var titleEl = document.querySelector('.pk-title');
+    if(titleEl){
+      var finalText='Z3RO';
+      var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+      var iter=0;
+      var interval=setInterval(function(){
+        titleEl.innerText=finalText.split('').map(function(c,idx){ return idx<iter?finalText[idx]:chars[Math.floor(Math.random()*chars.length)]; }).join('');
+        if(iter>=finalText.length) clearInterval(interval);
+        iter+=0.3;
+      },40);
+    }
+  </script>
 </body>
 </html>
