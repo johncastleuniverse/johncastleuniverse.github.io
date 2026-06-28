@@ -56,6 +56,9 @@
       border-bottom: 1px solid var(--border);
       margin-bottom: 56px;
       overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
     }
 
     .header-video {
@@ -64,7 +67,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.18;
+      object-position: center 15%;
+      opacity: 0.22;
       z-index: 0;
       pointer-events: none;
     }
@@ -72,12 +76,19 @@
     .header-top {
       position: relative;
       z-index: 1;
-      padding: 56px 0 48px;
+      padding: 56px 24px 48px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      header { min-height: 280px; }
+      .header-top { padding: 40px 16px 32px; }
     }
 
     .header-left { flex: 1; min-width: 260px; }
@@ -440,15 +451,10 @@
         <source src="video-1778175989378.mp4" type="video/mp4">
       </video>
       <div class="header-top">
-        <div class="header-left">
           <div class="pk-label">>> PRESS KIT · 2026</div>
           <div class="pk-title">Z3RO</div>
           <div class="pk-subtitle">-La Trilogía-</div>
           <div class="pk-author">JOHN CASTLE · EDICIONES CASTLE</div>
-        </div>
-        <div class="header-right">
-          <img class="cover-img" src="trilogy.png.png" alt="Z3RO La Trilogía — John Castle" />
-        </div>
       </div>
     </header>
 
