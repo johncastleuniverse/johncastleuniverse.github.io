@@ -461,6 +461,24 @@
       border-color: var(--cyan);
       color: var(--white);
     }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.3s;
+      display: block;
+    }
+    .gallery img:hover {
+      border-color: var(--cyan-dim);
+      transform: scale(1.02);
+    }
   </style>
 </head>
 <body>
@@ -587,7 +605,7 @@
     <div class="section">
       <div class="section-label">>> BANDA SONORA OFICIAL</div>
       <div class="ost-grid">
-        <img class="ost-cover" src="Z3RO OST PORTADA.jpg" alt="Z3RO Original Soundtrack — Dystopian Voyager" />
+        <img class="ost-cover" src="Z3RO_OST_PORTADA.jpg" alt="Z3RO Original Soundtrack — Dystopian Voyager" />
         <div>
           <div class="ost-title">Z3RO: THE ORIGINAL SCORE (EDICIÓN EXPANDIDA)</div>
           <div class="ost-artist">DYSTOPIAN VOYAGER · JOHN CASTLE MUSIC</div>
@@ -609,13 +627,25 @@
       </div>
     </div>
 
+    <!-- GALERÍA -->
+    <div class="section">
+      <div class="section-label">>> GALERÍA</div>
+      <div class="gallery">
+        <img src="Gemini_Generated_Image_gg36ttgg36ttgg36.png" alt="Z3RO — Mockup circuito" />
+        <img src="Z3RO VIDIO MOCKUP (1).png" alt="Z3RO — Mockup bóveda" />
+        <img src="Gemini_Generated_Image_7un8nk7un8nk7un8.png" alt="Z3RO — Mockup pedestal" />
+      </div>
+    </div>
+
     <!-- LINKS -->
     <div class="section">
       <div class="section-label">>> LINKS</div>
       <div class="links">
         <a class="link-btn primary" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank">Ebook → Amazon</a>
-        <a class="link-btn" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank">OST → Spotify</a>
+        <a class="link-btn" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank">Dystopian Voyager → Spotify</a>
+        <a class="link-btn" href="https://open.spotify.com/intl-es/artist/4k8qcIzHBWBA9hTps633Hk" target="_blank">In The Haze → Spotify</a>
         <a class="link-btn" href="https://johncastleuniverse.github.io" target="_blank">Sitio oficial</a>
+        <a class="link-btn" href="https://johncastleuniverse.github.io/universo_castle_v2.html" target="_blank">Universo interactivo</a>
         <a class="link-btn" href="https://www.instagram.com/dystopian_voyager_official" target="_blank">Instagram</a>
       </div>
     </div>
@@ -628,7 +658,8 @@
           AUTOR · JOHN CASTLE<br>
           EDITORIAL · EDICIONES CASTLE<br>
           PAÍS · CHILE · SANTIAGO<br>
-          WEB · <a href="https://johncastleuniverse.github.io">johncastleuniverse.github.io</a>
+          WEB · <a href="https://johncastleuniverse.github.io">johncastleuniverse.github.io</a><br>
+          CONTACTO · <a href="mailto:johncastleuniverse@gmail.com">johncastleuniverse@gmail.com</a>
         </p>
       </div>
     </div>
