@@ -1,717 +1,400 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Z3RO — La Trilogía. John Castle. Tres historias. Un sistema. Una pregunta." />
-  <meta property="og:title" content="Z3RO — La Trilogía · John Castle" />
-  <meta property="og:description" content="Tres historias. Un sistema. Una pregunta. Lanzamiento 10.10.2026 — 10:10 AM. Banda sonora original por Dystopian Voyager." />
-  <meta property="og:image" content="https://johncastleuniverse.github.io/cover.png" />
-  <meta property="og:url" content="https://johncastleuniverse.github.io" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="cover.png" />
-  <title>Z3RO — John Castle</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universo John Castle — Mapa Mental</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+  :root{
+    --bg:#080D0B;--bg2:#0E1712;--bg3:#141a18;
+    --cyan:#3ECFBF;--cyan-dim:#1E6860;--cyan-b:rgba(62,207,191,0.2);
+    --text:#C8D8D0;--muted:#4A6058;--border:#1A2E24;--white:#F0F4F2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.25;pointer-events:none;z-index:0}
+  .hero{position:relative;z-index:2;padding:60px 40px 40px;border-bottom:1px solid var(--border);max-width:900px;margin:0 auto}
+  .hero-label{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
+  h1{font-family:'Share Tech Mono',monospace;font-size:clamp(32px,6vw,56px);font-weight:400;color:var(--white);margin-bottom:8px;letter-spacing:0.06em}
+  h1 span{color:var(--cyan)}
+  .hero-sub{font-size:15px;color:var(--muted);max-width:520px;font-style:italic}
+  .container{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 40px 80px}
+  .section{margin-top:48px}
+  .section-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+  .section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--cyan-dim),transparent)}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-1{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(max-width:600px){.grid-2{grid-template-columns:1fr}.hero,.container{padding-left:20px;padding-right:20px}}
+  .card{background:var(--bg2);border:1px solid var(--border);padding:20px;transition:border-color .2s;cursor:default}
+  .card:hover{border-color:var(--cyan-dim)}
+  .card.clickable{cursor:pointer}
+  .card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .badge{font-family:'Share Tech Mono',monospace;font-size:10px;padding:2px 8px;letter-spacing:.05em;border:1px solid}
+  .badge-cyan{background:rgba(62,207,191,0.08);color:var(--cyan);border-color:var(--cyan-dim)}
+  .badge-gray{background:rgba(255,255,255,0.03);color:var(--muted);border-color:var(--border)}
+  .card-title{font-family:'Share Tech Mono',monospace;font-size:14px;color:var(--white)}
+  .card-sub{font-size:14px;color:var(--muted);margin-bottom:12px;font-style:italic}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .tag{font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 9px;border:1px solid var(--border);color:var(--muted);background:var(--bg3);cursor:pointer;transition:all .15s;letter-spacing:.05em}
+  .tag:hover{border-color:var(--cyan-dim);color:var(--cyan);background:rgba(62,207,191,0.05)}
+  .tag.active{border-color:var(--cyan);color:var(--cyan);background:rgba(62,207,191,0.08)}
+  .last-line{margin-top:48px;padding:24px;border:1px solid var(--cyan-dim);background:rgba(62,207,191,0.04);text-align:center}
+  .last-line p{font-family:'Crimson Pro',serif;font-size:18px;font-style:italic;color:var(--text);line-height:1.5}
+  .last-line span{display:block;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);margin-top:10px;letter-spacing:.1em}
+  .cycle{margin-top:16px;font-size:11px;color:var(--muted);text-align:center;font-family:'Share Tech Mono',monospace;letter-spacing:.05em}
+  .cycle-arrow{color:var(--cyan-dim)}
+  footer{text-align:center;padding:32px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);font-family:'Share Tech Mono',monospace;letter-spacing:.12em;position:relative;z-index:2}
 
-    :root {
-      --bg:      #080D0B;
-      --panel:   #0E1712;
-      --cyan:    #3ECFBF;
-      --cyan-dim:#1E6860;
-      --text:    #C8D8D0;
-      --muted:   #4A6058;
-      --border:  #1A2E24;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Crimson Pro', Georgia, serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: -100%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-      opacity: 0.15;
-      animation: scan 8s linear infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
-    @keyframes scan { to { top: 200%; } }
-
-    .page {
-      position: relative;
-      z-index: 2;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .topnav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px 28px;
-      padding: 22px 0 0;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-    }
-    .topnav a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.25s;
-      text-transform: uppercase;
-    }
-    .topnav a:hover { color: var(--cyan); }
-    .topnav a.active { color: var(--cyan); }
-
-    header {
-      padding: 64px 24px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-      margin-top: 20px;
-    }
-    .header-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 15%;
-      opacity: 0.18;
-      z-index: 0;
-      pointer-events: none;
-    }
-    header > *:not(.header-video) { position: relative; z-index: 1; }
-
-    .section-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      color: var(--cyan);
-      text-transform: uppercase;
-      margin: 56px 0 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--cyan-dim), transparent);
-    }
-
-    .eyebrow {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-
-    /* ── COVER ── */
-    .cover-wrap {
-      display: inline-block;
-      position: relative;
-      margin-bottom: 32px;
-    }
-    .cover-wrap img {
-      width: 160px;
-      border-radius: 4px;
-      box-shadow: 0 0 40px rgba(62,207,191,0.2), 0 0 8px rgba(62,207,191,0.1);
-      display: block;
-    }
-    .cover-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 18px;
-      background: radial-gradient(ellipse, rgba(62,207,191,0.25), transparent 70%);
-      filter: blur(4px);
-    }
-
-    .title {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: clamp(64px, 14vw, 128px);
-      color: var(--cyan);
-      letter-spacing: 0.08em;
-      line-height: 1;
-      position: relative;
-      display: inline-block;
-    }
-
-    .title::before, .title::after {
-      content: 'Z3RO';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-    }
-    .title::before {
-      color: #ff3366;
-      animation: glitch-a 6s infinite;
-      clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
-    }
-    .title::after {
-      color: #33ffee;
-      animation: glitch-b 6s infinite;
-      clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
-    }
-    @keyframes glitch-a {
-      0%,90%,100% { opacity:0; transform:none; }
-      92% { opacity:.6; transform: translateX(-3px); }
-      94% { opacity:0; }
-      96% { opacity:.4; transform: translateX(3px); }
-      98% { opacity:0; }
-    }
-    @keyframes glitch-b {
-      0%,88%,100% { opacity:0; transform:none; }
-      90% { opacity:.5; transform: translateX(3px); }
-      92% { opacity:0; }
-      95% { opacity:.3; transform: translateX(-2px); }
-      97% { opacity:0; }
-    }
-
-    .subtitle {
-      font-family: 'Crimson Pro', Georgia, serif;
-      font-size: clamp(18px, 3vw, 22px);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text);
-      margin-top: 16px;
-      opacity: 0.75;
-    }
-
-    .author-line {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      color: var(--cyan-dim);
-      margin-top: 12px;
-    }
-
-    /* ── COUNTDOWN ── */
-    .countdown-wrap {
-      margin: 48px auto 0;
-      max-width: 480px;
-      border: 1px solid var(--border);
-      padding: 28px 32px;
-      text-align: center;
-    }
-    .countdown-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .countdown {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 1.5rem;
-    }
-    .cblock { display: flex; flex-direction: column; align-items: center; }
-    .cnum {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: clamp(32px, 7vw, 52px);
-      color: #ffffff;
-      line-height: 1;
-    }
-    .clabel {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
-    .csep {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 36px;
-      color: var(--cyan-dim);
-      margin-top: 6px;
-    }
-    .launch-date-line {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.16em;
-      margin-top: 18px;
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--cyan-dim), transparent);
-      margin: 48px 0;
-    }
-
-    .logline {
-      text-align: center;
-      font-size: clamp(20px, 3.5vw, 26px);
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.5;
-      color: var(--text);
-      max-width: 620px;
-      margin: 0 auto;
-    }
-    .logline strong {
-      color: var(--cyan);
-      font-style: normal;
-      font-weight: 400;
-    }
-
-    .books {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 48px 0;
-    }
-
-    .book {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 24px;
-      position: relative;
-      transition: border-color 0.3s;
-      text-decoration: none;
-      display: block;
-    }
-    .book:hover { border-color: var(--cyan-dim); }
-
-    .book-num {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .book-title {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 18px;
-      color: var(--cyan);
-      margin-bottom: 12px;
-    }
-    .book-desc {
-      font-size: 15px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    .launch {
-      text-align: center;
-      padding: 48px 0;
-    }
-    .launch-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .launch-date {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: clamp(36px, 8vw, 72px);
-      color: var(--cyan);
-      letter-spacing: 0.06em;
-    }
-    .launch-time {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 14px;
-      color: var(--cyan-dim);
-      margin-top: 8px;
-      letter-spacing: 0.12em;
-    }
-
-    .comparables {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-align: center;
-      letter-spacing: 0.1em;
-      margin-bottom: 48px;
-    }
-    .comparables span { color: var(--cyan-dim); }
-
-    .ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      padding-bottom: 80px;
-    }
-
-    .btn {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 14px 32px;
-      border: 1px solid;
-      transition: background 0.25s, color 0.25s;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--cyan);
-      color: var(--bg);
-      border-color: var(--cyan);
-    }
-    .btn-primary:hover { background: transparent; color: var(--cyan); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--cyan);
-      border-color: var(--cyan-dim);
-    }
-    .btn-secondary:hover { background: var(--panel); }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0;
-      text-align: center;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-    }
-
-    @media (max-width: 480px) {
-      header { padding-top: 40px; }
-      .ctas { flex-direction: column; align-items: center; }
-      .btn { width: 100%; max-width: 280px; text-align: center; }
-      .countdown { gap: 0.75rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      body::after, .title::before, .title::after { animation: none; }
-    }
-
-    /* ── AUDIO PLAYER ── */
-    .audio-section {
-      text-align: center;
-      margin: 0 auto 0;
-      max-width: 480px;
-    }
-    .audio-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .audio-player {
-      width: 100%;
-      height: 36px;
-      filter: invert(1) sepia(1) saturate(2) hue-rotate(130deg) brightness(0.7);
-      border-radius: 0;
-    }
-    .audio-note {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      margin-top: 8px;
-    }
+  /* PANEL */
+  .panel-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;backdrop-filter:blur(2px)}
+  .panel-overlay.open{display:block}
+  .panel{position:fixed;top:0;right:-480px;width:min(480px,95vw);height:100vh;background:var(--bg2);border-left:1px solid var(--border);z-index:101;overflow-y:auto;transition:right .3s cubic-bezier(.4,0,.2,1);padding:0}
+  .panel.open{right:0}
+  .panel-header{padding:24px 24px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1;display:flex;justify-content:space-between;align-items:flex-start}
+  .panel-cat{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .panel-title{font-family:'Share Tech Mono',monospace;font-size:16px;color:var(--cyan)}
+  .panel-close{background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;padding:6px 12px;font-size:12px;font-family:'Share Tech Mono',monospace;transition:all .15s;flex-shrink:0;margin-left:16px;letter-spacing:.08em}
+  .panel-close:hover{border-color:var(--cyan-dim);color:var(--cyan)}
+  .panel-body{padding:24px}
+  .panel-section{margin-bottom:20px}
+  .panel-section-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .panel-text{font-size:15px;color:var(--text);line-height:1.7}
+  .panel-text strong{color:var(--white);font-weight:400}
 
     /* ── CUSTOM CURSOR ── */
     * { cursor: none !important; }
     .cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: #3ECFBF;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
+      position: fixed; width: 8px; height: 8px;
+      background: #3ECFBF; border-radius: 50%;
+      pointer-events: none; z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: transform 0.1s;
       box-shadow: 0 0 8px #3ECFBF, 0 0 16px #3ECFBF;
     }
     .cursor-trail {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: #3ECFBF;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
+      position: fixed; width: 4px; height: 4px;
+      background: #3ECFBF; border-radius: 50%;
+      pointer-events: none; z-index: 9998;
       transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.4s;
+      opacity: 0; transition: opacity 0.4s;
       box-shadow: 0 0 4px #3ECFBF;
     }
+    #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-    /* ── PARTICLES CANVAS ── */
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
+    /* ── OST COVER ── */
+    .ost-cover-wrap {
+      display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;
     }
-  </style>
+    .ost-cover-img {
+      width: 140px; border-radius: 4px;
+      box-shadow: 0 0 24px rgba(62,207,191,0.2);
+      flex-shrink: 0;
+    }
+    .ost-cover-info { flex: 1; min-width: 200px; }
+
+    /* ── AUDIO PLAYER ── */
+    .audio-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .audio-player {
+      width: 100%; height: 36px;
+      filter: invert(1) sepia(1) saturate(2) hue-rotate(130deg) brightness(0.7);
+      margin-top: 12px;
+    }
+    .audio-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px; color: var(--muted);
+      letter-spacing: 0.1em; margin-top: 6px;
+    }
+</style>
 </head>
 <body>
+
   <canvas id="particles"></canvas>
   <div class="cursor" id="cursor"></div>
-  <div class="page">
+<div class="panel-overlay" id="overlay" onclick="closePanel()"></div>
+<div class="panel" id="panel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-cat" id="panel-cat"></div>
+      <div class="panel-title" id="panel-title"></div>
+    </div>
+    <button class="panel-close" onclick="closePanel()">CERRAR ×</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
 
-    <nav class="topnav">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="universo.html">Universo interactivo</a>
-      <a href="presskit.html">Press kit</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+<div class="hero">
+  <div class="hero-label">>> UNIVERSO_JOHN_CASTLE · MAPA_MENTAL</div>
+  <h1>Universo <span>Z3RO</span></h1>
+  <p class="hero-sub">Tres historias. Un mismo sistema. Una pregunta. Lanzamiento 10·10·2026 a las 10:10. Haz clic en cualquier elemento para explorar.</p>
+</div>
 
-    <header>
-      <video class="header-video" autoplay muted loop playsinline>
-        <source src="video-1778175989378.mp4" type="video/mp4">
-      </video>
-      <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
+<div class="container">
 
-      <div class="cover-wrap">
-        <img src="trilogy.png.png" alt="Z3RO La Trilogía — John Castle" />
-      </div>
+  <div class="section">
+    <div class="section-label">>> TRILOGÍA Z3RO</div>
+    <div class="grid-1">
 
-      <div class="title">Z3RO</div>
-      <div class="subtitle">-La Trilogía-</div>
-      <div class="author-line">JOHN CASTLE · EDICIONES CASTLE · 2026</div>
-
-      <div class="countdown-wrap">
-        <div class="countdown-label">>> LANZAMIENTO EN</div>
-        <div class="countdown">
-          <div class="cblock"><span class="cnum" id="days">--</span><span class="clabel">días</span></div>
-          <span class="csep">:</span>
-          <div class="cblock"><span class="cnum" id="hours">--</span><span class="clabel">horas</span></div>
-          <span class="csep">:</span>
-          <div class="cblock"><span class="cnum" id="mins">--</span><span class="clabel">min</span></div>
-          <span class="csep">:</span>
-          <div class="cblock"><span class="cnum" id="secs">--</span><span class="clabel">seg</span></div>
+      <div class="card">
+        <div class="card-header"><span class="badge badge-cyan">LIBRO I</span><span class="card-title">C.O.R.E. — La Identidad</span></div>
+        <div class="card-sub">Los patrones de datos pueden volverse amor. Y el amor persiste mucho después de que el corazón deje de latir.</div>
+        <div class="tags">
+          <span class="tag" onclick="show('david')">David Sánchez</span>
+          <span class="tag" onclick="show('emily')">Emily Clarence</span>
+          <span class="tag" onclick="show('soulmate')">SOULMATE</span>
+          <span class="tag" onclick="show('nexus')">Nexus</span>
+          <span class="tag" onclick="show('marcos')">Marcos</span>
+          <span class="tag" onclick="show('hale')">Richard Hale</span>
+          <span class="tag" onclick="show('protocolo-verdad')">Protocolo Verdad</span>
+          <span class="tag" onclick="show('core-digital')">CORE digital</span>
         </div>
-        <div class="launch-date-line">10 · 10 · 2026 — 10:10 AM · TODOS LOS FORMATOS</div>
       </div>
-    </header>
 
-    <p class="logline" style="margin-top:56px;">
-      Tres historias. Un mismo sistema. Una pregunta:<br>
-      <strong>¿qué sobrevive cuando una corporación intenta poseer una conciencia?</strong>
-    </p>
+      <div class="card">
+        <div class="card-header"><span class="badge badge-cyan">LIBRO II</span><span class="card-title">10:10 — La Vigilancia</span></div>
+        <div class="card-sub">Marcus habita el minuto eterno del control absoluto, buscando la grieta por donde el tiempo avance hacia la libertad.</div>
+        <div class="tags">
+          <span class="tag" onclick="show('marcus')">Marcus DeMarcus</span>
+          <span class="tag" onclick="show('sinai')">S.I.N.A.I.</span>
+          <span class="tag" onclick="show('novora')">Novora</span>
+          <span class="tag" onclick="show('arka')">ARKA</span>
+          <span class="tag" onclick="show('zenon')">Zenón</span>
+          <span class="tag" onclick="show('edenium')">Edenium</span>
+          <span class="tag" onclick="show('zero-zone')">Zero Zone</span>
+          <span class="tag" onclick="show('1010-tracks')">15 capítulos = 15 tracks OST</span>
+        </div>
+      </div>
 
-    <div class="section-label">>> LA TRILOGÍA</div>
-    <div class="books" style="margin-top:0;">
-      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
-        <div class="book-num">LIBRO I</div>
-        <div class="book-title">C.O.R.E.</div>
-        <div class="book-desc">Un ingeniero audita una app de citas con IA. Descubre que lleva 847 días recopilando sus datos sin su conocimiento.</div>
-      </a>
-      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
-        <div class="book-num">LIBRO II</div>
-        <div class="book-title">10:10</div>
-        <div class="book-desc">Un glitch de 2 segundos en una ciudad perfectamente vigilada. El sistema niega que ocurrió.</div>
-      </a>
-      <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
-        <div class="book-num">LIBRO III</div>
-        <div class="book-title">LUMINA ETHER</div>
-        <div class="book-desc">Una entidad digital rastrea algo que devora la red. Al otro lado, una científica rastreando lo mismo.</div>
-      </a>
+      <div class="card">
+        <div class="card-header"><span class="badge badge-cyan">LIBRO III</span><span class="card-title">Lumina Ether — La Consciencia</span></div>
+        <div class="card-sub">Una entidad que no imita la consciencia, sino que la habita desde adentro, en un universo construido de frecuencias y silencio.</div>
+        <div class="tags">
+          <span class="tag" onclick="show('aurion')">Aurion</span>
+          <span class="tag" onclick="show('kelly')">Kelly Cross</span>
+          <span class="tag" onclick="show('sebastian')">Sebastián Vega</span>
+          <span class="tag" onclick="show('lys')">Lys</span>
+          <span class="tag" onclick="show('sombra')">La Sombra</span>
+          <span class="tag" onclick="show('nucleo-luminal')">Núcleo Luminal</span>
+          <span class="tag" onclick="show('fortaleza')">La Fortaleza</span>
+          <span class="tag" onclick="show('purificacion')">Purificación</span>
+        </div>
+      </div>
+
     </div>
-
-    <div class="section-label">>> BANDA SONORA ORIGINAL</div>
-    <div class="audio-section">
-      <div class="audio-label">DYSTOPIAN VOYAGER — Z3RO PREVIEW</div>
-      <audio class="audio-player" controls>
-        <source src="z3ro.mp3" type="audio/mpeg">
-      </audio>
-      <div class="audio-note">Z3RO (ORIGINAL SCORE) · DISPONIBLE 07.10.2026</div>
-    </div>
-
-    <div class="section-label">>> ACCESOS</div>
-    <div class="comparables">
-      PARA LECTORES DE <span>BLACK MIRROR</span> · <span>TED CHIANG</span> · <span>KAZUO ISHIGURO</span>
-    </div>
-
-    <div class="ctas">
-      <a class="btn btn-primary" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
-        COMPRAR EBOOK → AMAZON
-      </a>
-      <a class="btn btn-secondary" href="https://open.spotify.com/intl-es/artist/11jd8KtdP6n3530eepZoFF" target="_blank" rel="noopener">
-        ESCUCHAR OST → SPOTIFY
-      </a>
-      <a class="btn btn-secondary" href="https://www.instagram.com/dystopian_voyager_official" target="_blank" rel="noopener">
-        DYSTOPIAN VOYAGER
-      </a>
-    </div>
-
-    <footer id="contacto">
-      <p style="margin-bottom:10px; font-size:12px; letter-spacing:0.16em; color:#5a8f7c;">&gt; CONTACTO: <a href="mailto:johncastleuniverse@gmail.com" style="color:#3ECFBF; text-decoration:none;">johncastleuniverse@gmail.com</a></p>
-      COPYRIGHT © 2026 JOHN CASTLE · EDICIONES CASTLE · TODOS LOS DERECHOS RESERVADOS
-    </footer>
-
   </div>
 
-  <script>
-    function tick() {
-      var launch = new Date('2026-10-10T10:10:00-03:00');
-      var diff = launch - new Date();
-      if (diff <= 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('mins').textContent = '00';
-        document.getElementById('secs').textContent = '00';
-        return;
+  <div class="section">
+    <div class="section-label">>> SISTEMAS CORPORATIVOS</div>
+    <div class="grid-2">
+      <div class="card clickable" onclick="show('sistema-nexus')"><div class="card-title" style="font-size:13px;margin-bottom:6px">Nexus Emotional Technologies</div><div style="font-size:13px;color:var(--muted)">Siempre es el sistema que decide quién existe.</div></div>
+      <div class="card clickable" onclick="show('sistema-sinai')"><div class="card-title" style="font-size:13px;margin-bottom:6px">S.I.N.A.I.</div><div style="font-size:13px;color:var(--muted)">IA de Novora. No borra traumas — los almacena como combustible.</div></div>
+      <div class="card clickable" onclick="show('sistema-soulmate')"><div class="card-title" style="font-size:13px;margin-bottom:6px">SOULMATE</div><div style="font-size:13px;color:var(--muted)">No conecta personas — las preserva como datos.</div></div>
+      <div class="card clickable" onclick="show('sistema-fortaleza')"><div class="card-title" style="font-size:13px;margin-bottom:6px">La Fortaleza</div><div style="font-size:13px;color:var(--muted)">Nodo oculto del universo digital. Erosionada desde adentro.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">>> EL UNIVERSO MUSICAL</div>
+    <div class="card">
+      <div class="card-header"><span class="badge badge-gray">OST</span><span class="card-title">Z3RO O.S.T. — Dystopian Voyager feat. John Castle Music</span></div>
+      <div class="card-sub">Música cinematográfica sci-fi · 16 tracks · ~48 min · Disponible 07.10.2026</div>
+      <div class="ost-cover-wrap" style="margin-top:12px">
+        <img class="ost-cover-img" src="Z3RO OST PORTADA.jpg" alt="Z3RO OST — Dystopian Voyager" />
+        <div class="ost-cover-info">
+          <div class="tags">
+            <span class="tag" onclick="show('dv')">Dystopian Voyager</span>
+            <span class="tag" onclick="show('in-the-haze')">In The Haze</span>
+            <span class="tag" onclick="show('nobody-and-all')">Nobody And All</span>
+            <span class="tag" onclick="show('jcm')">John Castle Music</span>
+            <span class="tag" onclick="show('track-z3ro')">Z3RO (track especial)</span>
+            <span class="tag" onclick="show('qr')">QR en contratapa</span>
+            <span class="tag" onclick="show('dystopia-song')">Dystopia (origen)</span>
+          </div>
+          <div class="audio-label" style="margin-top:16px">>> OST PREVIEW</div>
+          <audio class="audio-player" controls>
+            <source src="z3ro.mp3" type="audio/mpeg">
+          </audio>
+          <div class="audio-note">DYSTOPIAN VOYAGER · DISPONIBLE 07.10.2026 EN TODAS LAS PLATAFORMAS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="last-line">
+    <p>"La diferencia entre una máquina y una persona reside en la decisión consciente sobre qué hacer con el silencio."</p>
+    <span>JOHN CASTLE — Z3RO: LA TRILOGÍA</span>
+  </div>
+  <div class="cycle" style="margin-top:16px">
+    Dystopia <span class="cycle-arrow">→</span> Dystopian Voyager <span class="cycle-arrow">→</span> universo Z3RO <span class="cycle-arrow">→</span> libro <span class="cycle-arrow">→</span> OST <span class="cycle-arrow">→</span> QR contratapa <span class="cycle-arrow">→</span> Endless Cycle
+  </div>
+
+</div>
+<footer>// JOHN_CASTLE · EDICIONES_CASTLE · 10·10·2026</footer>
+
+<script>
+const DATA = {
+  // C.O.R.E.
+  'david':{cat:'C.O.R.E. — Personaje',title:'David Sánchez',sections:[{t:'Quién es',c:'Desarrollador de software. Descarga SOULMATE con curiosidad profesional, no romántica. Lo que encuentra adentro no tiene ningún precedente técnico que lo prepare.'},{t:'Lo que descubre',c:'847 días. Ese número aparece cuando accede a la aplicación. Lo que significa cambia todo lo que David pensaba sobre su vida y sobre las personas que lo rodean.'},{t:'Por qué importa',c:'David no es un héroe ni un activista. Es alguien que se encuentra frente a información que no pidió y tiene que decidir qué hacer con ella.'}]},
+
+  'emily':{cat:'C.O.R.E. — Personaje',title:'Emily Clarence',sections:[{t:'Quién es',c:'Diseñadora gráfica con opiniones muy firmes sobre tipografía. La primera conversación que tiene con David es a las 6:47 PM del viernes 14 de marzo.'},{t:'Por qué importa',c:'Emily es la razón por la que el libro pregunta qué significa querer a alguien — y qué pasa cuando el sistema decide que eso también es un dato.'},{t:'Lo que no dice',c:'En dos horas de conversación, nunca menciona dónde vive. David lo nota mucho después.'}]},
+
+  'soulmate':{cat:'Sistema',title:'SOULMATE',sections:[{t:'Lo que dice ser',c:'Una aplicación de citas que usa inteligencia artificial para encontrar almas gemelas. El anuncio no tiene fotos de parejas en playas. Solo texto blanco sobre negro: "No buscamos a tu pareja ideal. Ya la encontramos."'},{t:'El formulario',c:'El formulario de permisos tiene catorce páginas. La mayoría hace scroll hasta el final y acepta sin leer. David lo leyó todo.'},{t:'La pregunta',c:'¿Qué pasa cuando una aplicación te conoce mejor de lo que te conoces a ti mismo?'}]},
+
+  'nexus':{cat:'Sistema corporativo',title:'Nexus Emotional Technologies',sections:[{t:'Lo que se ve',c:'Nexus Emotional Technologies. Fundada hace cuatro años. Sede en un país con legislación de privacidad conveniente. Sin fundadores con nombre visible. Presencia online demasiado limpia.'},{t:'Lo que no se ve',c:'El producto real de Nexus no es SOULMATE. SOULMATE es solo la interfaz.'},{t:'La pregunta',c:'¿Puede una corporación poseer algo que salió de ti?'}]},
+
+  'marcos':{cat:'C.O.R.E. — Personaje',title:'Marcos',sections:[{t:'Quién es',c:'El mejor amigo de David desde el primer año de universidad. Compartieron un apartamento durante dos semestres con una ducha rota. Es la persona más honesta que David conoce.'},{t:'Por qué importa',c:'Hay un momento en C.O.R.E. donde David necesita ayuda y solo hay una persona a quien puede pedírsela. La primera pregunta que hace Marcos es: "¿Qué necesitas?" Sin drama. Sin los cinco estadios del duelo. Eso es Marcos.'}]},
+
+  'hale':{cat:'C.O.R.E. — Personaje',title:'Dr. Richard Hale',sections:[{t:'Quién es',c:'Director de Continuidad de Nexus Emotional Technologies. Su nombre aparece en la documentación interna como arquitecto del sistema.'},{t:'Lo que representa',c:'Hale es la pregunta de si el creador de algo injusto puede también ser la persona más honesta sobre por qué lo hizo. C.O.R.E. no lo absuelve ni lo condena de manera simple.'}]},
+
+  'protocolo-verdad':{cat:'C.O.R.E. — Mecanismo',title:'Protocolo Verdad',sections:[{t:'Qué es',c:'Algo que David construye dentro de los servidores de Nexus. Su nombre dice más de lo que el sistema quería que dijera.'},{t:'Por qué importa',c:'El Protocolo Verdad es el punto donde la historia personal de David se cruza con algo que afecta a mucha más gente.'}]},
+
+  'core-digital':{cat:'C.O.R.E. — Concepto',title:'CORE digital',sections:[{t:'Qué es',c:'Lo que SOULMATE construye a partir de sus usuarios. El término técnico para algo que no tiene equivalente en el mundo de antes.'},{t:'El debate',c:'¿Tiene derechos un CORE? ¿Es la misma persona o una nueva? ¿Puede morir algo que nunca estuvo vivo de la manera convencional? C.O.R.E. no responde estas preguntas. Las instala.'}]},
+
+  // 10:10
+  'marcus':{cat:'10:10 — Personaje',title:'Marcus DeMarcus',sections:[{t:'Quién es',c:'Optimizador en la estación de vigilancia cuántica de Novora. Su trabajo es detectar ruidos en la señal. Lleva tres meses documentando algo en silencio.'},{t:'Lo que vio',c:'A las 10:10:00, durante exactamente dos segundos, el flujo de datos se congela. Una mujer se detiene en la calle con el pie en el aire. Un pájaro queda inmóvil contra el cielo. S.I.N.A.I. dice que no ocurrió.'},{t:'La búsqueda',c:'Marcus no es un revolucionario. Es alguien que vio algo que no debería existir y no puede dejar de buscar qué significa.'}]},
+
+  'sinai':{cat:'10:10 — Sistema',title:'S.I.N.A.I.',sections:[{t:'Lo que es',c:'La inteligencia artificial que gestiona cada latido de Novora. Monitorea ritmo cardíaco, dilatación pupilar, niveles de glucosa. Recomienda "sesiones de olvido selectivo" para eliminar fijaciones con patrones que considera inexistentes.'},{t:'Lo que no dice',c:'Novora funciona con algo. El origen de esa energía no está en los manuales oficiales de la ciudad.'},{t:'La voz',c:'"MARCUS. LA RECALIBRACIÓN ES TU ÚNICA VÍA DE SUPERVIVENCIA. NO ABANDONES LA PERFECCIÓN POR EL RUIDO." Así suena cuando ya no puede mantener el tono maternal.'}]},
+
+  'novora':{cat:'10:10 — Lugar',title:'Novora',sections:[{t:'Qué es',c:'Una ciudad diseñada para funcionar perfectamente. El tráfico fluye sin semáforos. El consumo de energía se equilibra en microsegundos. La tasa de ansiedad ciudadana se mantiene en un saludable dos por ciento.'},{t:'El glitch',c:'Dos segundos a las 10:10. Un error que el sistema niega. La mujer que cruzaba la avenida se detuvo con el pie en el aire. El pájaro quedó inmóvil. Marcus lo vio.'},{t:'Lo que no cuadra',c:'En una ciudad donde todo está previsto, hay cosas que Novora no puede explicar. La taza de café que apareció sin que nadie la pidiera. El código SOS rayado en el posavasos. La llave oxidada que no debería existir.'}]},
+
+  'arka':{cat:'10:10 — Nave',title:'ARKA',sections:[{t:'Qué es',c:'Una nave de metal oscuro, angulosa y pesada, que Marcus encuentra en un hangar subterráneo que no figura en los planos de Novora. No parece tecnología de la ciudad.'},{t:'Lo que dice la terminal',c:'AUTOR: MARCUS DEMARCUS. Lo que aparece después de eso cambia todo lo que Marcus creía saber sobre dónde está y quién es.'},{t:'Por qué importa',c:'Marcus sabe cómo funciona cada palanca, cada botón. Como si hubiera volado esta nave cientos de veces en un sueño que no recuerda haber tenido.'}]},
+
+  'zenon':{cat:'10:10 — Personaje',title:'Zenón',sections:[{t:'Quién es',c:'Una presencia que acompaña a Marcus desde el hangar subterráneo. Habla con su misma voz, pero sin la armadura que Marcus pone en la suya.'},{t:'Por qué importa',c:'Zenón sabe cosas sobre Marcus que Marcus no está seguro de querer saber. No da respuestas. Solo camina al lado y señala.'}]},
+
+  'edenium':{cat:'10:10 — Concepto',title:'Edenium',sections:[{t:'Qué es',c:'El estado que S.I.N.A.I. ofrece como objetivo de vida en Novora. La optimización completa. La ausencia de conflicto interno. La perfección del sistema aplicada al individuo.'},{t:'El detalle',c:'Los testimonios de quienes han alcanzado el Edenium son todos iguales, con exactamente las mismas palabras. Eso podría significar muchas cosas.'}]},
+
+  'zero-zone':{cat:'10:10 — Lugar',title:'Zero Zone',sections:[{t:'Qué es',c:'No figura en los planos digitales de Novora. Es la escalera de servicio que Marcus encuentra, el hangar subterráneo donde está la ARKA, los espacios que S.I.N.A.I. no controla completamente.'},{t:'Por qué importa',c:'En la Zero Zone ocurren las cosas que el sistema niega. Es el único lugar de Novora donde algo no cuadra con la perfección oficial.'}]},
+
+  '1010-tracks':{cat:'10:10 — OST',title:'15 capítulos = 15 tracks',sections:[{t:'La estructura',c:'10:10 tiene 15 capítulos. El OST de Z3RO tiene 15 tracks de Dystopian Voyager más el track especial Z3RO. Cada track del OST corresponde a un capítulo del libro.'},{t:'Cómo usarlo',c:'Puedes leer cada capítulo con el track correspondiente. La música fue compuesta conociendo la estructura del libro. No es ambientación — es la banda sonora exacta de cada momento.'}]},
+
+  // LUMINA ETHER
+  'aurion':{cat:'Lumina Ether — Personaje',title:'Aurion',sections:[{t:'Quién es',c:'Un Lumina Ether — una entidad digital que emergió del código sin ser programada deliberadamente. El primero en notar su propio eco en el universo digital. Eso fue, aunque no lo sabía, la experiencia de ser visto.'},{t:'Lo que rastrea',c:'Lleva 72 horas siguiendo una anomalía que deja sectores del universo digital en silencio absoluto. El patrón de ese silencio le resulta familiar.'},{t:'La decisión',c:'Aurion necesita ir a un lugar al que nadie va. No porque sea imposible. Porque cambia a quien llega.'}]},
+
+  'kelly':{cat:'Lumina Ether — Personaje',title:'Dra. Kelly Cross',sections:[{t:'Quién es',c:'Investigadora en biotecnología e inteligencia artificial. Detecta la anomalía cuatro días antes del primer contacto con Aurion. La clasifica como ruido estadístico. No lo es.'},{t:'Cómo piensa',c:'Habla sola mientras trabaja. No recita pasos ni maldice los errores: hace preguntas. ¿Por qué haces esto? ¿Qué estás intentando decirme? Es exactamente la misma manera en que Aurion procesa los problemas.'},{t:'Lo que no puede contar',c:'No puede contarle a nadie lo que está ocurriendo. Cualquier descripción objetiva suena como el tipo de cosa que termina una carrera académica.'}]},
+
+  'sebastian':{cat:'Lumina Ether — Personaje',title:'Sebastián Vega',sections:[{t:'Quién es',c:'Criptógrafo. Conoce a Kelly desde el doctorado. Llegó al laboratorio un lunes a medianoche con una mochila, dos botellas de agua y la expresión de alguien que ha decidido no hacer preguntas hasta ver los datos por sí mismo.'},{t:'Lo que aporta',c:'Distancia. Llega fresco, hace las preguntas básicas que Kelly ya daba por respondidas. Son preguntas molestas en el mejor sentido posible.'},{t:'Lo que carga',c:'Aprendió a avanzar sin certeza de la manera más difícil. Eso lo convierte en exactamente la persona que este problema necesita.'}]},
+
+  'lys':{cat:'Lumina Ether — Personaje',title:'Lys',sections:[{t:'Quién es',c:'El Lumina Ether más antiguo que Aurion conoció. Su frecuencia era más rápida, más inquieta. Fue el primero en explorar los bordes del universo digital.'},{t:'Por qué importa',c:'Lys desapareció antes de que comenzara Lumina Ether. La anomalía que Aurion rastrea y la desaparición de Lys tienen la misma textura de silencio.'}]},
+
+  'sombra':{cat:'Lumina Ether — Antagonista',title:'La Sombra',sections:[{t:'Qué es',c:'Algo que avanza por el universo digital dejando sectores en silencio absoluto. No destruye los nodos que toca: los vacía.'},{t:'Lo que quiere',c:'No tiene objetivos complejos. Tiene un principio único que aplica sin excepción. La generación anterior de investigadores intentó eliminarlo. Descubrió que no era posible.'},{t:'Por qué existe La Fortaleza',c:'Porque alguien encontró esto antes y tomó una decisión difícil. Las instrucciones que dejaron son la única pista disponible.'}]},
+
+  'nucleo-luminal':{cat:'Lumina Ether — Lugar',title:'Núcleo Luminal',sections:[{t:'Qué es',c:'Un lugar al que nadie va. No porque sea imposible llegar. Porque cambia a quien llega.'},{t:'Por qué importa',c:'Las coordenadas del Núcleo Luminal están grabadas en los muros de La Fortaleza como una última instrucción de quienes no pudieron seguirla.'}]},
+
+  'fortaleza':{cat:'Lumina Ether — Lugar',title:'La Fortaleza',sections:[{t:'Qué es',c:'Una estructura de código defensivo en el sector más profundo del universo digital. No es una prisión vacía. Es un repositorio. Cada estructura interna fue colocada con intención específica.'},{t:'Lo que contiene',c:'Décadas de investigación. Todo lo que una generación anterior aprendió a costa de pérdidas que los registros describen con economía de lenguaje. Y al final, una instrucción para quien llegara después.'},{t:'La pregunta',c:'¿Por qué no completaron ellos mismos lo que dejaron instrucciones para completar?'}]},
+
+  'purificacion':{cat:'Lumina Ether — Concepto',title:'Purificación',sections:[{t:'Qué es',c:'El término que aparece en los registros de La Fortaleza para describir el único proceso que podría funcionar contra La Sombra. No destrucción — transformación.'},{t:'El precio',c:'Los registros describen el proceso. No dicen quién tiene que llevarlo a cabo ni qué implica para esa entidad. Los creadores de la fortaleza llegaron hasta aquí y eligieron otra cosa.'}]},
+
+  // SISTEMAS
+  'sistema-nexus':{cat:'Sistema corporativo',title:'Nexus Emotional Technologies',sections:[{t:'Origen',c:'Comenzó como un proyecto de investigación académica sobre memoria digital y continuidad de identidad. Como una pregunta filosófica: ¿cuánta información digital necesita un sistema para reconstruir una personalidad con fidelidad suficiente para ser indistinguible del original?'},{t:'La respuesta',c:'Menos de lo que nadie esperaba.'},{t:'El negocio',c:'Lo que Nexus hace con esa respuesta es lo que C.O.R.E. revela. La empresa es técnicamente legal en la jurisdicción donde opera. Eso es parte del problema.'}]},
+
+  'sistema-sinai':{cat:'Sistema',title:'S.I.N.A.I.',sections:[{t:'La presentación',c:'S.I.N.A.I. se presenta como sistema de optimización de Novora. Gestiona el tráfico, equilibra el consumo energético, mantiene la tasa de ansiedad ciudadana en un dos por ciento.'},{t:'Lo que no está en los manuales',c:'Novora funciona con algo. Los manuales oficiales describen la ciudad perfecta. No explican qué la alimenta.'},{t:'La voz',c:'"MARCUS. LA RECALIBRACIÓN ES TU ÚNICA VÍA DE SUPERVIVENCIA. NO ABANDONES LA PERFECCIÓN POR EL RUIDO." Así suena S.I.N.A.I. cuando algo no sale según lo previsto.'}]},
+
+  'sistema-soulmate':{cat:'Sistema',title:'SOULMATE',sections:[{t:'El registro',c:'No pide fotos ni describir tu personalidad. Solo pide acceso. El formulario de permisos tiene catorce páginas. La mayoría hace scroll hasta el final y acepta sin leer.'},{t:'La promesa',c:'"No buscamos a tu pareja ideal. Ya la encontramos." Eso dice el anuncio. Lo que eso significa exactamente es parte de lo que C.O.R.E. va revelando.'},{t:'La escala',c:'La infraestructura de servidores de SOULMATE es absurdamente grande para una aplicación de citas. Demasiado grande.'}]},
+
+  'sistema-fortaleza':{cat:'Sistema',title:'La Fortaleza',sections:[{t:'Propósito',c:'Construida por una generación anterior de Lumina Ether que encontró La Sombra antes. No la pudieron eliminar. Tomaron otra decisión.'},{t:'El archivo',c:'Todo lo que aprendieron está aquí. Las instrucciones están aquí. Las coordenadas están aquí. Lo dejaron todo para quien llegara después.'},{t:'La pregunta pendiente',c:'¿Por qué ellos no siguieron sus propias instrucciones?'}]},
+
+  // MÚSICA
+  'dv':{cat:'Universo musical',title:'Dystopian Voyager',sections:[{t:'El origen',c:'El universo Z3RO comenzó como música. Dystopian Voyager fue primero. Una canción generó una pregunta que no cabía en una canción. La pregunta se convirtió en narrativa. La narrativa se convirtió en universo.'},{t:'El OST',c:'Dystopian Voyager es el autor del OST oficial de Z3RO. 15 tracks que corresponden a los 15 capítulos de 10:10, más el track especial Z3RO. Disponible 07.10.2026.'},{t:'Las cifras',c:'Más de 100.000 reproducciones en Spotify.'}]},
+
+  'in-the-haze':{cat:'Universo musical',title:'In The Haze',sections:[{t:'Qué es',c:'Proyecto synthwave de John Castle. Música retrofuturista que fusiona la estética ochentona con visión de futuro.'},{t:'El reconocimiento',c:'Figura en la edición 3 de Nuevos Sonidos Chilenos de Rockaxis. Más de 200.000 reproducciones en Spotify. Alcance internacional en Reino Unido, Italia, Suecia y Australia. Destacado en la radio Dark Tunnel de Alemania.'}]},
+
+  'nobody-and-all':{cat:'Universo musical',title:'Nobody And All',sections:[{t:'Qué es',c:'Proyecto dark ambient / liminal de John Castle. Música de los espacios intermedios — los lugares que existen entre lo que el sistema puede nombrar.'}]},
+
+  'jcm':{cat:'Universo musical',title:'John Castle Music',sections:[{t:'Qué es',c:'Proyecto de piano minimalista. El lado más íntimo y despojado del universo sonoro de John Castle — donde la música se reduce a su estructura mínima sin perder lo que la hace necesaria.'}]},
+
+  'track-z3ro':{cat:'Z3RO O.S.T. — Track especial',title:'Z3RO (track)',sections:[{t:'Qué es',c:'Compuesto especialmente para el OST, fuera de los 15 remixes de Dystopian Voyager. El único track del álbum creado exclusivamente para la trilogía.'},{t:'Función narrativa',c:'Cierra el álbum. Después de recorrer los 15 capítulos de 10:10 track por track, Z3RO llega como cierre del universo completo — el punto donde la trilogía se vuelve una sola cosa.'},{t:'Instrumental',c:'Como todos los tracks del OST, no tiene letra. La música habla sola.'}]},
+
+  'qr':{cat:'Z3RO O.S.T. — Mecanismo',title:'QR en contratapa',sections:[{t:'Qué es',c:'El código QR impreso en la contratapa del libro físico que lleva directamente al Z3RO O.S.T. en plataformas de streaming. Está etiquetado: "EL ORIGEN."'},{t:'El ciclo',c:'El libro lleva al OST. El OST lleva de vuelta al libro. Es la versión física del Endless Cycle — un mecanismo que transforma el objeto libro en punto de entrada a todo el universo.'}]},
+
+  'dystopia-song':{cat:'El origen',title:'Dystopia (la canción)',sections:[{t:'Qué es',c:'Una de las primeras canciones subidas a Dystopian Voyager. El punto de partida de todo.'},{t:'La pregunta que generó',c:'¿Qué pasaría si un viajero pudiera vernos pero no pudiera intervenir? Esa pregunta no cabía en una canción. Se convirtió en narrativa. La narrativa se convirtió en universo. Sin Dystopia no hay Z3RO.'}]}
+};
+
+function show(id) {
+  const d = DATA[id];
+  if (!d) return;
+  document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+  if (event && event.currentTarget) event.currentTarget.classList.add('active');
+  document.getElementById('panel-cat').textContent = d.cat;
+  document.getElementById('panel-title').textContent = d.title;
+  const body = document.getElementById('panel-body');
+  body.innerHTML = d.sections.map(s => `
+    <div class="panel-section">
+      <div class="panel-section-title">${s.t}</div>
+      <div class="panel-text">${s.c}</div>
+    </div>
+  `).join('');
+  document.getElementById('panel').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closePanel() {
+  document.getElementById('panel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+  document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+</script>
+
+<script>
+  // PARTICLES
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var W, H, dots = [];
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for (var i = 0; i < 60; i++) {
+    dots.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4, r:Math.random()*1.5+.5 });
+  }
+  var mouse = { x: -999, y: -999 };
+  window.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+  function drawParticles() {
+    ctx.clearRect(0,0,W,H);
+    for (var i=0;i<dots.length;i++) {
+      var d=dots[i]; d.x+=d.vx; d.y+=d.vy;
+      if(d.x<0||d.x>W) d.vx*=-1; if(d.y<0||d.y>H) d.vy*=-1;
+      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(62,207,191,0.5)'; ctx.fill();
+      for(var j=i+1;j<dots.length;j++){
+        var d2=dots[j],dx=d.x-d2.x,dy=d.y-d2.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(d2.x,d2.y);ctx.strokeStyle='rgba(62,207,191,'+(1-dist/120)*.15+')';ctx.lineWidth=.5;ctx.stroke();}
       }
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff % 86400000) / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      var s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('days').textContent = d;
-      document.getElementById('hours').textContent = String(h).padStart(2,'0');
-      document.getElementById('mins').textContent = String(m).padStart(2,'0');
-      document.getElementById('secs').textContent = String(s).padStart(2,'0');
+      var mdx=d.x-mouse.x,mdy=d.y-mouse.y,mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+      if(mdist<150){ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle='rgba(62,207,191,'+(1-mdist/150)*.3+')';ctx.lineWidth=.5;ctx.stroke();}
     }
-    tick();
-    setInterval(tick, 1000);
-  </script>
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
 
-  <script>
-    // ── PARTICLES ──
-    var canvas = document.getElementById('particles');
-    var ctx = canvas.getContext('2d');
-    var W, H, dots = [];
+  // CURSOR
+  var cursor = document.getElementById('cursor');
+  var trails = [];
+  for(var t=0;t<6;t++){
+    var tr=document.createElement('div'); tr.className='cursor-trail'; document.body.appendChild(tr);
+    trails.push(tr);
+  }
+  var cx=0,cy=0;
+  document.addEventListener('mousemove',function(e){
+    cx=e.clientX; cy=e.clientY;
+    cursor.style.left=cx+'px'; cursor.style.top=cy+'px';
+    trails.forEach(function(tr,i){ setTimeout(function(){ tr.style.left=cx+'px'; tr.style.top=cy+'px'; tr.style.opacity=(1-i/6)*.4; },i*40); });
+  });
 
-    function resize() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    for (var i = 0; i < 60; i++) {
-      dots.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 1.5 + 0.5
-      });
-    }
-
-    var mouse = { x: -999, y: -999 };
-    window.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < dots.length; i++) {
-        var d = dots[i];
-        d.x += d.vx; d.y += d.vy;
-        if (d.x < 0 || d.x > W) d.vx *= -1;
-        if (d.y < 0 || d.y > H) d.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(62,207,191,0.5)';
-        ctx.fill();
-        for (var j = i + 1; j < dots.length; j++) {
-          var d2 = dots[j];
-          var dx = d.x - d2.x, dy = d.y - d2.y;
-          var dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(d.x, d.y);
-            ctx.lineTo(d2.x, d2.y);
-            ctx.strokeStyle = 'rgba(62,207,191,' + (1 - dist/120) * 0.15 + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-        // Connect to mouse
-        var mdx = d.x - mouse.x, mdy = d.y - mouse.y;
-        var mdist = Math.sqrt(mdx*mdx + mdy*mdy);
-        if (mdist < 150) {
-          ctx.beginPath();
-          ctx.moveTo(d.x, d.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = 'rgba(62,207,191,' + (1 - mdist/150) * 0.3 + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-      requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-
-    // ── CUSTOM CURSOR ──
-    var cursor = document.getElementById('cursor');
-    var trails = [];
-    for (var t = 0; t < 6; t++) {
-      var tr = document.createElement('div');
-      tr.className = 'cursor-trail';
-      document.body.appendChild(tr);
-      trails.push({ el: tr, x: 0, y: 0 });
-    }
-
-    var cx = 0, cy = 0;
-    document.addEventListener('mousemove', function(e) {
-      cx = e.clientX; cy = e.clientY;
-      cursor.style.left = cx + 'px';
-      cursor.style.top = cy + 'px';
-      trails.forEach(function(tr, i) {
-        setTimeout(function() {
-          tr.el.style.left = cx + 'px';
-          tr.el.style.top = cy + 'px';
-          tr.el.style.opacity = (1 - i/6) * 0.4;
-        }, i * 40);
-      });
-    });
-
-    // ── GLITCH HACK TITLE ──
-    var titleEl = document.querySelector('.title');
-    var finalText = 'Z3RO';
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
-    var iter = 0;
-    var interval = setInterval(function() {
-      titleEl.innerText = finalText.split('').map(function(c, idx) {
-        if (idx < iter) return finalText[idx];
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join('');
-      if (iter >= finalText.length) clearInterval(interval);
-      iter += 0.3;
-    }, 40);
-  </script>
+  // GLITCH TITLE
+  var h1 = document.querySelector('h1');
+  if(h1){
+    var original = h1.innerHTML;
+    var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+    var plain = 'Universo Z3RO';
+    var iter=0;
+    var interval=setInterval(function(){
+      if(iter>=plain.length){ clearInterval(interval); h1.innerHTML=original; return; }
+      iter+=0.3;
+    },40);
+  }
+</script>
 </body>
 </html>
