@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<!-- INDEX v2 · header-video · nav · og-tags -->
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Z3RO — La Trilogía. John Castle. Tres historias. Un sistema. Una pregunta." />
+  <meta property="og:title" content="Z3RO — La Trilogía · John Castle" />
+  <meta property="og:description" content="Tres historias. Un sistema. Una pregunta. Lanzamiento 10.10.2026 — 10:10 AM. Banda sonora original por Dystopian Voyager." />
+  <meta property="og:image" content="https://johncastleuniverse.github.io/cover.png" />
+  <meta property="og:url" content="https://johncastleuniverse.github.io" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="cover.png" />
   <title>Z3RO — John Castle</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
@@ -65,9 +73,70 @@
       padding: 0 24px;
     }
 
+    .topnav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 28px;
+      padding: 22px 12px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .topnav a { color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .topnav a:hover, .topnav a.active { color: var(--cyan); }
+
     header {
-      padding: 64px 0 0;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
       text-align: center;
+    }
+    .header-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      opacity: 0.22;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .header-top {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 56px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      header { min-height: 320px; }
+      .header-top { padding: 40px 16px 32px; }
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin: 56px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan-dim), transparent);
     }
 
     .eyebrow {
@@ -432,12 +501,19 @@
   <div class="cursor" id="cursor"></div>
   <div class="page">
 
-    <header>
-      <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
+    <nav class="topnav">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="universo.html">Universo interactivo</a>
+      <a href="presskit.html">Press kit</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
 
-      <div class="cover-wrap">
-        <img src="trilogy.png.png" alt="Z3RO La Trilogía — John Castle" />
-      </div>
+    <header>
+      <video class="header-video" autoplay muted loop playsinline>
+        <source src="video-1778175989378.mp4" type="video/mp4">
+      </video>
+      <div class="header-top">
+      <div class="eyebrow">>> SYSTEM CODE Z3RO : INITIATING ACCESS_</div>
 
       <div class="title">Z3RO</div>
       <div class="subtitle">-La Trilogía-</div>
@@ -456,18 +532,16 @@
         </div>
         <div class="launch-date-line">10 · 10 · 2026 — 10:10 AM · TODOS LOS FORMATOS</div>
       </div>
+      </div>
     </header>
 
-    <div class="divider"></div>
-
-    <p class="logline">
+    <p class="logline" style="margin-top:56px;">
       Tres historias. Un mismo sistema. Una pregunta:<br>
       <strong>¿qué sobrevive cuando una corporación intenta poseer una conciencia?</strong>
     </p>
 
-    <div class="divider"></div>
-
-    <div class="books">
+    <div class="section-label">>> LA TRILOGÍA</div>
+    <div class="books" style="margin-top:0;">
       <a class="book" href="https://www.amazon.com/dp/B0H3WQXBMF" target="_blank" rel="noopener">
         <div class="book-num">LIBRO I</div>
         <div class="book-title">C.O.R.E.</div>
@@ -485,20 +559,16 @@
       </a>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="divider"></div>
-
+    <div class="section-label">>> BANDA SONORA ORIGINAL</div>
     <div class="audio-section">
-      <div class="audio-label">>> OST PREVIEW — DYSTOPIAN VOYAGER</div>
+      <div class="audio-label">DYSTOPIAN VOYAGER — Z3RO PREVIEW</div>
       <audio class="audio-player" controls>
         <source src="z3ro.mp3" type="audio/mpeg">
       </audio>
       <div class="audio-note">Z3RO (ORIGINAL SCORE) · DISPONIBLE 07.10.2026</div>
     </div>
 
-    <div class="divider"></div>
-
+    <div class="section-label">>> ACCESOS</div>
     <div class="comparables">
       PARA LECTORES DE <span>BLACK MIRROR</span> · <span>TED CHIANG</span> · <span>KAZUO ISHIGURO</span>
     </div>
@@ -515,7 +585,8 @@
       </a>
     </div>
 
-    <footer>
+    <footer id="contacto">
+      <p style="margin-bottom:10px; font-size:12px; letter-spacing:0.16em; color:#5a8f7c;">&gt; CONTACTO: <a href="mailto:johncastleuniverse@gmail.com" style="color:#3ECFBF; text-decoration:none;">johncastleuniverse@gmail.com</a></p>
       COPYRIGHT © 2026 JOHN CASTLE · EDICIONES CASTLE · TODOS LOS DERECHOS RESERVADOS
     </footer>
 
@@ -649,8 +720,5 @@
       iter += 0.3;
     }, 40);
   </script>
-  <p style="text-align:center; color:#5a8f7c; font-family:'Share Tech Mono',monospace; font-size:12px; letter-spacing:2px; padding:20px 0;">
-  &gt; CONTACTO: johncastleuniverse@gmail.com
-</p>
 </body>
 </html>
