@@ -556,7 +556,21 @@
     }
 
     /* ── VISITAS ── */
-    .visits { margin-top: 10px; }
+    .visit-badge {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      background: rgba(14,23,18,0.85);
+      border: 1px solid var(--cyan-dim);
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      padding: 10px 16px;
+      backdrop-filter: blur(4px);
+    }
+    .visit-badge b { color: var(--white); font-weight: normal; }
   </style>
   <link rel="alternate" hreflang="es" href="https://johncastleuniverse.github.io/presskit.html" />
   <link rel="alternate" hreflang="en" href="https://johncastleuniverse.github.io/presskit_en.html" />
@@ -569,6 +583,7 @@
     <source src="backsound.mp3" type="audio/mpeg">
   </audio>
   <button class="sound-btn" id="soundBtn" onclick="toggleSound()">▶ AMBIENTE</button>
+  <div class="visit-badge">VISITAS · <b id="visitCount">—</b></div>
 
   <div class="page">
 
@@ -783,7 +798,6 @@
 
     <footer>
       COPYRIGHT © 2026 JOHN CASTLE · EDICIONES CASTLE · TODOS LOS DERECHOS RESERVADOS
-      <div class="visits">VISITAS · <span id="visitCount">—</span></div>
     </footer>
 
   </div>
