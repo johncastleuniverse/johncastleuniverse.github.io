@@ -498,6 +498,56 @@
     .lang-switch a:hover { color: var(--white); }
     .lang-switch .on { color: var(--cyan); }
     .lang-switch .sep { color: var(--cyan-dim); margin: 0 6px; }
+
+    /* ── EXPOSICIÓN ── */
+    .expo-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+    .expo-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .expo-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .expo-box p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .expo-meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--cyan-dim);
+      margin-top: 14px;
+    }
+
+    /* ── LIBRO ILUSTRADO ── */
+    .tales-intro {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .tales-meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--cyan-dim);
+      margin-top: 16px;
+    }
+
+    /* ── VISITAS ── */
+    .visits { margin-top: 10px; }
   </style>
   <link rel="alternate" hreflang="es" href="https://johncastleuniverse.github.io/presskit.html" />
   <link rel="alternate" hreflang="en" href="https://johncastleuniverse.github.io/presskit_en.html" />
@@ -560,6 +610,27 @@
           <div class="book-desc">Una entidad digital rastrea algo que devora la red. Al otro lado, una científica rastreando lo mismo.</div>
         </div>
       </div>
+    </div>
+
+    <!-- LIBRO ILUSTRADO -->
+    <div class="section">
+      <div class="section-label">&gt;&gt; LIBRO ILUSTRADO</div>
+      <p class="tales-intro">Tres cuentos infantiles ilustrados, con texto y dirección de arte de John Castle. Una trilogía de historias breves para leer en voz alta, publicada por Ediciones Castle.</p>
+      <div class="books">
+        <div class="book">
+          <div class="book-num">CUENTO I</div>
+          <div class="book-title">Bernabé, el vampiro al revés</div>
+        </div>
+        <div class="book">
+          <div class="book-num">CUENTO II</div>
+          <div class="book-title">El Archipiélago de las Mezclas</div>
+        </div>
+        <div class="book">
+          <div class="book-num">CUENTO III</div>
+          <div class="book-title">El secreto de Tristán</div>
+        </div>
+      </div>
+      <div class="tales-meta">3 CUENTOS EXTRAORDINARIOS · JOHN CASTLE · EDICIONES CASTLE</div>
     </div>
 
     <!-- FICHA TÉCNICA -->
@@ -661,6 +732,17 @@
     </div>
     
 
+    <!-- EXPOSICIÓN -->
+    <div class="section">
+      <div class="section-label">&gt;&gt; EXPOSICIÓN</div>
+      <div class="expo-box">
+        <div class="expo-tag">FINALISTA · 20 OBRAS SELECCIONADAS</div>
+        <div class="expo-title">"Espejo de los Dioses"</div>
+        <p>Obra visual de John Castle seleccionada entre las 20 finalistas del 1er Concurso "Chile a través del Arte y la Inteligencia Artificial", organizado por la Dirección de Extensión Cultural de la Universidad Andrés Bello. La inauguración y premiación se realizó el 29 de septiembre de 2026 en el Campus Casona de Las Condes.</p>
+        <div class="expo-meta">UNIVERSIDAD ANDRÉS BELLO · 2026</div>
+      </div>
+    </div>
+
     <!-- LINKS -->
     <div class="section">
       <div class="section-label">&gt;&gt; LINKS</div>
@@ -691,6 +773,7 @@
 
     <footer>
       COPYRIGHT © 2026 JOHN CASTLE · EDICIONES CASTLE · TODOS LOS DERECHOS RESERVADOS
+      <div class="visits">VISITAS · <span id="visitCount">—</span></div>
     </footer>
 
   </div>
@@ -771,6 +854,14 @@
       }
     }
   </script>
+  <!-- Contador de visitas (GoatCounter) -->
+  <script data-goatcounter="https://johncastle.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <script>
+    fetch('https://johncastle.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { document.getElementById('visitCount').textContent = d.count; })
+      .catch(function () {});
+  </script>
 </body>
 </html>
-
