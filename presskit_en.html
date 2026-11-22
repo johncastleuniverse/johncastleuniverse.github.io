@@ -498,6 +498,113 @@
     .lang-switch a:hover { color: var(--white); }
     .lang-switch .on { color: var(--cyan); }
     .lang-switch .sep { color: var(--cyan-dim); margin: 0 6px; }
+    /* ── EXPOSICIÓN ── */
+    .expo-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+    .expo-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .expo-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .expo-box p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .expo-meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--cyan-dim);
+      margin-top: 14px;
+    }
+
+    /* ── LIBRO ILUSTRADO ── */
+    .tales-intro {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .tales-spread {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 32px rgba(62,207,191,0.15);
+      margin-bottom: 20px;
+    }
+    .tales-meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--cyan-dim);
+      margin-top: 16px;
+    }
+
+    .expo-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 32px rgba(62,207,191,0.15);
+      margin-bottom: 20px;
+    }
+
+    .statement {
+      margin-top: 18px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+    .statement summary {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--cyan);
+      cursor: pointer !important;
+      list-style: none;
+    }
+    .statement summary::-webkit-details-marker { display: none; }
+    .statement summary::before { content: '+ '; }
+    .statement[open] summary::before { content: '– '; }
+    .statement summary:hover { color: var(--white); }
+    .statement-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: var(--white);
+      margin: 16px 0 12px;
+    }
+    .statement p { margin-top: 12px; }
+
+    /* ── VISITAS ── */
+    .visit-badge {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      background: rgba(14,23,18,0.85);
+      border: 1px solid var(--cyan-dim);
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      padding: 10px 16px;
+      backdrop-filter: blur(4px);
+    }
+    .visit-badge b { color: var(--white); font-weight: normal; }
   </style>
   <link rel="alternate" hreflang="es" href="https://johncastleuniverse.github.io/presskit.html" />
   <link rel="alternate" hreflang="en" href="https://johncastleuniverse.github.io/presskit_en.html" />
@@ -510,6 +617,7 @@
     <source src="backsound.mp3" type="audio/mpeg">
   </audio>
   <button class="sound-btn" id="soundBtn" onclick="toggleSound()">▶ AMBIENT</button>
+  <div class="visit-badge">VISITS · <b id="visitCount">—</b></div>
 
   <div class="page">
 
@@ -571,7 +679,7 @@
           <div class="ficha-val">10.10.2026 — 10:10 AM</div>
         </div>
         <div class="ficha-item">
-          <div class="ficha-key">Formatos</div>
+          <div class="ficha-key">Formats</div>
           <div class="ficha-val">Paperback · Ebook · POD</div>
         </div>
         <div class="ficha-item">
@@ -651,6 +759,52 @@
           <source src="z3ro.mp3" type="audio/mpeg">
         </audio>
         <div class="audio-note">FULL OST AVAILABLE SINCE 07.10.2026 ON ALL PLATFORMS</div>
+      </div>
+    </div>
+
+    <!-- ILLUSTRATED BOOK -->
+    <div class="section">
+      <div class="section-label">&gt;&gt; ILLUSTRATED BOOK</div>
+      <p class="tales-intro">Three illustrated children's stories, with text and art direction by John Castle. A trilogy of short tales to read aloud, published by Ediciones Castle.</p>
+      <img class="tales-spread" src="cuentos-portada.jpg" alt="3 Cuentos Extraordinarios — front and back cover" onerror="this.style.display='none'" />
+      <div class="books">
+        <div class="book">
+          <div class="book-num">TALE I</div>
+          <div class="book-title">Bernabé, el vampiro al revés</div>
+          <div class="book-desc">Bernabé, the upside-down vampire</div>
+        </div>
+        <div class="book">
+          <div class="book-num">TALE II</div>
+          <div class="book-title">El Archipiélago de las Mezclas</div>
+          <div class="book-desc">The Archipelago of Mixtures</div>
+        </div>
+        <div class="book">
+          <div class="book-num">TALE III</div>
+          <div class="book-title">El secreto de Tristán</div>
+          <div class="book-desc">Tristán's Secret</div>
+        </div>
+      </div>
+      <div class="tales-meta">3 CUENTOS EXTRAORDINARIOS · JOHN CASTLE · EDICIONES CASTLE</div>
+    </div>
+
+    <!-- EXHIBITION -->
+    <div class="section">
+      <div class="section-label">&gt;&gt; EXHIBITION</div>
+      <div class="expo-box">
+        <div class="expo-tag">FINALIST · 20 SELECTED WORKS</div>
+        <div class="expo-title">"Espejo de los Dioses" ("Mirror of the Gods")</div>
+        <img class="expo-img" src="espejo-de-los-dioses.jpg" alt="Espejo de los Dioses (Mirror of the Gods) — visual work by John Castle, finalist of the 1st Chile through Art and Artificial Intelligence Contest" onerror="this.style.display='none'" />
+        <p>Visual work by John Castle, selected among the 20 finalists of the 1st “Chile through Art and Artificial Intelligence” Contest, organized by the Cultural Outreach Office of Universidad Andrés Bello. The opening and award ceremony took place on September 29, 2026, at the Casona de Las Condes Campus.</p>
+        <details class="statement">
+          <summary>READ THE ARTIST'S STATEMENT</summary>
+          <div class="statement-title">Mirror of the Gods: The Fragility of Reflection</div>
+          <p>The work problematizes Chile's territorial memory: those landscapes of the south that we inhabit, photograph and love, but whose names the urgency of the present sometimes keeps us from retaining. I position myself from a personal, emotional point of view — that of someone who once stood before that lake, captured its light, and years later wonders whether it will still be the same.</p>
+          <p>Inspired by J.M.W. Turner, whose painting turns nature into omen, I found in his language the only honest way to express the sublime and the fragile at once.</p>
+          <p>The horizon is the philosophical heart of the work: that imperceptible line where photography dies and painting is born, where the real fractures into the imagined. It is not a limit — it is a threshold. It is exactly there that Chile can still choose what it will become. Turner understood that the horizon does not separate land and sky, but the present from destiny.</p>
+          <p>Two visual elements articulate this tension: the pier, a modest human trace that enters the water like someone asking permission; and the sky in flames, a painterly storm that threatens to devour the calm of the reflection.</p>
+          <p>The tool used was Gemini, running Google's Imagen 3 model. Significantly, the watermark that Imagen 3 stamps on generated images ended up naturally covered by the real photograph laid over it — as if the work itself confirmed its own thesis: the authentic prevails over the fabricated. We dream of a Chile where a nameless lake remains a mirror of something sacred.</p>
+        </details>
+        <div class="expo-meta">UNIVERSIDAD ANDRÉS BELLO · 2026</div>
       </div>
     </div>
 
@@ -775,6 +929,15 @@
         playing = true;
       }
     }
+  </script>
+  <!-- Visit counter (GoatCounter) -->
+  <script data-goatcounter="https://johncastle.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <script>
+    fetch('https://johncastle.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { document.getElementById('visitCount').textContent = d.count; })
+      .catch(function () {});
   </script>
 </body>
 </html>
